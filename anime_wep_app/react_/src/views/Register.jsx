@@ -1,6 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import axiosClient from "../axios-client.js";
 
 function Register() {
@@ -15,7 +15,7 @@ function Register() {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmationRef = useRef();
-
+    const [errors, setErros] = useState(null);
     const { setUser, setToken } = useStateContext();
 
     const onSubmit = (event) => {
@@ -29,15 +29,15 @@ function Register() {
 
         axiosClient
             .post("/register", payload)
-            .then((data) => {
-                setUser(data.user);
-                setToken(data.token);
+            .then((response) => {
+                setUser(response.data.user);
+                setToken(response.data.token);
             })
             .catch((err) => {
                 const response = err.response;
                 if (response && response.status === 422) {
-                    //
-                    console.log(response.data.erros);
+                    console.log(response.data.errors);
+                    setErros(response.data.errors);
                 }
             });
     };
@@ -45,7 +45,7 @@ function Register() {
     return (
         <div className="max-w-md mx-auto m-10 p-6 bg-white rounded-md shadow-md">
             <h2 className="text-3xl font-semibold mb-5">Register</h2>
-            <form onSubmit={onSubmit} action="">
+            <form onSubmit={onSubmit} method="POST">
                 <div className="mb-4">
                     <label
                         htmlFor="name"
@@ -61,6 +61,9 @@ function Register() {
                         className="w-full px-3 py-2 border rounded-md"
                         placeholder="Name"
                     />
+                    {errors && errors.name && (
+                        <p className="text-red-500">{errors.name[0]}</p>
+                    )}
                 </div>
                 <div className="mb-4">
                     <label
@@ -77,6 +80,9 @@ function Register() {
                         className="w-full px-3 py-2 border rounded-md"
                         placeholder="Email"
                     />
+                    {errors && errors.email && (
+                        <p className="text-red-500">{errors.email[0]}</p>
+                    )}
                 </div>
                 <div className="mb-4">
                     <label
@@ -93,6 +99,9 @@ function Register() {
                         className="w-full px-3 py-2 border rounded-md"
                         placeholder="Password"
                     />
+                    {errors && errors.password && (
+                        <p className="text-red-500">{errors.password[0]}</p>
+                    )}
                 </div>
                 <div className="mb-4">
                     <label
