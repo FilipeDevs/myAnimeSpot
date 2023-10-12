@@ -1,6 +1,7 @@
 import { Link, Navigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import { useRef } from "react";
+import axiosClient from "../axios-client.js";
 
 function Register() {
     const { token } = useStateContext();
@@ -15,6 +16,8 @@ function Register() {
     const passwordRef = useRef();
     const passwordConfirmationRef = useRef();
 
+    const { setUser, setToken } = useStateContext();
+
     const onSubmit = (event) => {
         event.preventDefault();
         const payload = {
@@ -24,7 +27,18 @@ function Register() {
             password_confirmation: passwordConfirmationRef.current.value, // no camel case so Laravel can search for confirm password
         };
 
-        console.log(payload);
+        axiosClient
+            .post("/register", payload)
+            .then((data) => {
+                setUser(data.user);
+                setToken(data.token);
+            })
+            .catch((err) => {
+                const response = err.response;
+                if (response && response.status === 422) {
+                    console.log(response.data.erros);
+                }
+            });
     };
 
     return (
