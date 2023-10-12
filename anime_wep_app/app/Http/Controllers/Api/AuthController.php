@@ -32,9 +32,9 @@ class AuthController extends Controller
         $credentials = $request->validated();
 
         if (!Auth::attempt($credentials)) {
-            return ([
+            return response([
                 'message' => "Invalid email or password"
-            ]);
+            ], 422);
         }
         /** @var \App\Models\User $user*/
         $user = Auth::user();
