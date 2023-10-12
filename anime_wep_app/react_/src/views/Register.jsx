@@ -1,5 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
+import { useRef } from "react";
 
 function Register() {
     const { token } = useStateContext();
@@ -9,7 +10,22 @@ function Register() {
         return <Navigate to="/dashboard" />;
     }
 
-    const onSubmit = (event) => {};
+    const nameRef = useRef();
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const passwordConfirmationRef = useRef();
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        const payload = {
+            name: nameRef.current.value,
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+            password_confirmation: passwordConfirmationRef.current.value, // no camel case so Laravel can search for confirm password
+        };
+
+        console.log(payload);
+    };
 
     return (
         <div className="max-w-md mx-auto m-10 p-6 bg-white rounded-md shadow-md">
@@ -23,6 +39,7 @@ function Register() {
                         Name
                     </label>
                     <input
+                        ref={nameRef}
                         id="name"
                         name="name"
                         type="text"
@@ -38,6 +55,7 @@ function Register() {
                         Email
                     </label>
                     <input
+                        ref={emailRef}
                         id="email"
                         name="email"
                         type="text"
@@ -53,6 +71,7 @@ function Register() {
                         Password
                     </label>
                     <input
+                        ref={passwordRef}
                         id="password"
                         name="password"
                         type="password"
@@ -60,11 +79,27 @@ function Register() {
                         placeholder="Password"
                     />
                 </div>
+                <div className="mb-4">
+                    <label
+                        htmlFor="passwordConfirmation"
+                        className="block text-gray-700 text-sm font-bold mb-2"
+                    >
+                        Confirm Password
+                    </label>
+                    <input
+                        ref={passwordConfirmationRef}
+                        id="passwordConfirmation"
+                        name="passwordConfirmation"
+                        type="password"
+                        className="w-full px-3 py-2 border rounded-md"
+                        placeholder="Password Confirmation"
+                    />
+                </div>
                 <button
                     type="submit"
                     className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600"
                 >
-                    Log in
+                    Register
                 </button>
                 <p className="mt-4">
                     Already Registered ?
