@@ -47,59 +47,61 @@ function Login() {
     };
     return (
         <div className="max-w-md mx-auto m-10 p-6 bg-white rounded-md shadow-md">
-            <h2 className="text-3xl font-semibold mb-5">Log in</h2>
-            <form onSubmit={onSubmit} action="">
-                <div className="mb-4">
+            <h1 className="block mb-5 text-lg font-medium text-gray-900 dark:text-white">
+                Log in
+            </h1>
+            <form onSubmit={onSubmit}>
+                <div className="mb-6">
                     <label
                         htmlFor="email"
-                        className="block text-gray-700 text-sm font-bold mb-2"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                        Email
+                        Your email
                     </label>
                     <input
                         ref={emailRef}
+                        type="email"
                         id="email"
-                        name="email"
-                        type="text"
-                        className="w-full px-3 py-2 border rounded-md"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Email"
-                    />
+                        required
+                    ></input>
                     {errors && errors.email && (
                         <p className="text-red-500">{errors.email[0]}</p>
                     )}
                 </div>
-                <div className="mb-4">
+                <div className="mb-6">
                     <label
                         htmlFor="password"
-                        className="block text-gray-700 text-sm font-bold mb-2"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                        Password
+                        Your password
                     </label>
                     <input
                         ref={passwordRef}
-                        id="password"
-                        name="password"
                         type="password"
-                        className="w-full px-3 py-2 border rounded-md"
+                        id="password"
                         placeholder="Password"
-                    />
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required
+                    ></input>
                     {errors && errors.password && (
                         <p className="text-red-500">{errors.password[0]}</p>
                     )}
                 </div>
                 <button
                     type="submit"
-                    className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600"
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                     Log in
                 </button>
                 <p className="mt-4">
-                    Not registered yet?
+                    Don't have an account yet ?
                     <Link
                         to="/register"
                         className="text-blue-500 hover:underline"
                     >
-                        Create an account
+                        Register here
                     </Link>
                 </p>
             </form>

@@ -3,6 +3,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 
 function DefaultLayout() {
     const { token } = useStateContext(); // Refresh layout when token is updated
+    console.log("Component");
 
     return (
         <div>
