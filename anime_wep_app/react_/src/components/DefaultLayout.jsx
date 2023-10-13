@@ -1,6 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
+import { useStateContext } from "../contexts/ContextProvider";
 
 function DefaultLayout() {
+    const { token } = useStateContext(); // Refresh layout when token is updated
+
     return (
         <div>
             <nav className="bg-blue-500 p-4">
@@ -11,20 +14,30 @@ function DefaultLayout() {
                         </Link>
                     </li>
                     <li>
-                        <div className="flex space-x-4">
+                        {!token && (
+                            <div className="flex space-x-4">
+                                <Link
+                                    to="/login"
+                                    className="text-white hover:text-gray-300"
+                                >
+                                    Login
+                                </Link>
+                                <Link
+                                    to="/register"
+                                    className="text-white hover:text-gray-300"
+                                >
+                                    Register
+                                </Link>
+                            </div>
+                        )}
+                        {token && (
                             <Link
-                                to="/login"
-                                class="text-white hover:text-gray-300"
+                                to="/dashboard"
+                                className="text-white hover:text-gray-300"
                             >
-                                Login
+                                Dashboard
                             </Link>
-                            <Link
-                                to="/register"
-                                class="text-white hover:text-gray-300"
-                            >
-                                Register
-                            </Link>
-                        </div>
+                        )}
                     </li>
                 </ul>
             </nav>
