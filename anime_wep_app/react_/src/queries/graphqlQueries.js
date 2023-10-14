@@ -69,7 +69,7 @@ const getCurrentAndNextSeasonAndYear = () => {
 const { currentSeason, currentYear, nextSeason, nextYear } = getCurrentAndNextSeasonAndYear();
 
 
-export const popularAnimeQuery = gql`
+export const popularSeasonAnimeQuery = gql`
     query ($page: Int, $perPage: Int) {
         Page(page: $page, perPage: $perPage) {
             media(type: ANIME, season: ${currentSeason}, seasonYear: ${currentYear}, sort: POPULARITY_DESC) {
@@ -92,6 +92,26 @@ export const upcomingAnimeQuery = gql`
     query ($page: Int, $perPage: Int) {
         Page(page: $page, perPage: $perPage) {
             media(type: ANIME, season: ${nextSeason}, seasonYear: ${nextYear}, sort: POPULARITY_DESC) {
+                id
+                title {
+                    english
+                    romaji
+                }
+                coverImage {
+                    extraLarge
+                    large
+                    medium
+                }
+            }
+        }
+    }
+`;
+
+
+export const popularAllAnimeQuery = gql`
+    query ($page: Int, $perPage: Int) {
+        Page(page: $page, perPage: $perPage) {
+            media(type: ANIME, sort: POPULARITY_DESC) {
                 id
                 title {
                     english

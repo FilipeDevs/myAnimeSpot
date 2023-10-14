@@ -4,7 +4,7 @@ function CardAnime({ image, title }) {
     return (
         <div className="flex flex-col items-center text-center">
             <img
-                className="h-64 w-auto max-w-full rounded-lg"
+                className="h-64 w-48 object-cover rounded-lg" // Adjust the width and height as needed
                 src={image}
                 alt="animeCard"
             />
