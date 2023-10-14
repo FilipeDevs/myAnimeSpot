@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 import apolloClient from "../apollo-client";
 import CardAnime from "./CardAnime";
+import { Link } from "react-router-dom";
 
-function Animes({ name, gqlQuery }) {
+function AnimeGrid({ name, gqlQuery, searchProps }) {
     const { data, loading, error } = useQuery(gqlQuery, {
         client: apolloClient,
         variables: { page: 1, perPage: 6 },
@@ -14,12 +15,13 @@ function Animes({ name, gqlQuery }) {
         <div className="flex flex-col items-center justify-center py-6">
             <div className="text-center py-5">
                 <h1 className="text-2xl font-bold">{name}</h1>
-                <a
-                    href="#"
+                <Link
+                    to={"/search"}
+                    state={searchProps}
                     className="italic text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                     View all
-                </a>
+                </Link>
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-6 gap-4 md:grid-cols-3 gap-4 sm:grid-cols-2 gap-4">
                 {data.Page.media.map((anime) => {
@@ -36,4 +38,4 @@ function Animes({ name, gqlQuery }) {
     );
 }
 
-export default Animes;
+export default AnimeGrid;

@@ -66,7 +66,7 @@ const getCurrentAndNextSeasonAndYear = () => {
     };
 };
 
-const { currentSeason, currentYear, nextSeason, nextYear } = getCurrentAndNextSeasonAndYear();
+export const { currentSeason, currentYear, nextSeason, nextYear } = getCurrentAndNextSeasonAndYear();
 
 
 export const popularSeasonAnimeQuery = gql`

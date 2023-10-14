@@ -4,7 +4,8 @@ import Register from "./views/Register";
 import NotFound from "./views/NotFound";
 import DefaultLayout from "./components/DefaultLayout";
 import Dashboard from "./views/Dashboard";
-import Main from "./views/Main";
+import Home from "./views/Home";
+import AnimeSearch from "./views/AnimeSearch";
 
 const router = createBrowserRouter([
     {
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/",
-                element: <Main />,
+                element: <Home />,
+            },
+            {
+                path: "/search",
+                element: <AnimeSearch />,
             },
         ],
     },
