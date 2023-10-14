@@ -1,28 +1,19 @@
-import { gql } from "@apollo/client";
+import {
+    popularAnimeQuery,
+    trendingAnimeQuery,
+    upcomingAnimeQuery,
+} from "../queries/graphqlQueries";
 import Animes from "./Animes";
 
 function Main() {
-    const trendingAnimeQuery = gql`
-        query ($page: Int, $perPage: Int) {
-            Page(page: $page, perPage: $perPage) {
-                media(type: ANIME, sort: TRENDING_DESC) {
-                    id
-                    title {
-                        english
-                    }
-                    coverImage {
-                        extraLarge
-                        large
-                        medium
-                    }
-                }
-            }
-        }
-    `;
-
     return (
         <div>
             <Animes name={"Trending Anime"} gqlQuery={trendingAnimeQuery} />
+            <Animes
+                name={"Popular Anime this season"}
+                gqlQuery={popularAnimeQuery}
+            />
+            <Animes name={"Upcoming"} gqlQuery={upcomingAnimeQuery} />
         </div>
     );
 }

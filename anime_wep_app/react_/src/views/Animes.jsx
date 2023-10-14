@@ -11,7 +11,7 @@ function Animes({ name, gqlQuery }) {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center py-6">
             <h1 className="text-2xl font-bold mb-4">{name}</h1>
             <div className="grid grid-cols-1 xl:grid-cols-6 gap-4 md:grid-cols-3 gap-4 sm:grid-cols-2 gap-4">
                 {data.Page.media.map((anime) => {
@@ -19,7 +19,7 @@ function Animes({ name, gqlQuery }) {
                         <CardAnime
                             key={anime.id}
                             image={anime.coverImage.large}
-                            title={anime.title.english}
+                            title={[anime.title.english, anime.title.romaji]}
                         />
                     );
                 })}
