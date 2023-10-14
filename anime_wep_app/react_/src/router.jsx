@@ -29,12 +29,6 @@ const router = createBrowserRouter([
             },
         ],
     },
-
-    {
-        path: "/",
-        element: <DefaultLayout />,
-        children: [],
-    },
     {
         path: "*",
         element: <NotFound />,

@@ -8,7 +8,7 @@ function Login() {
 
     if (token) {
         // Auth users can't have access to Login/Register Views
-        return <Navigate to="/dashboard" />;
+        return <Navigate to="/" />;
     }
 
     const emailRef = useRef();

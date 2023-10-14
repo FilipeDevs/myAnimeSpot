@@ -8,7 +8,7 @@ function Register() {
 
     if (token) {
         // Auth users can't have acess to Login/Register Views
-        return <Navigate to="/dashboard" />;
+        return <Navigate to="/" />;
     }
 
     const nameRef = useRef();
