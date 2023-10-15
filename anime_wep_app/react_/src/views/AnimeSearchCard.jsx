@@ -3,7 +3,6 @@ import React from "react";
 function AnimeSearchCard({
     image,
     title,
-    studios,
     description,
     genres,
     season,
@@ -47,9 +46,6 @@ function AnimeSearchCard({
                             <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">
                                 {genres[1]}
                             </span>
-                            <button className="bg-green-500 text-white w-5 h-5 rounded-full flex items-center justify-center hover:bg-green-600 focus:outline-none">
-                                <span className="text-sm">+</span>
-                            </button>
                         </div>
                     </div>
                 </div>

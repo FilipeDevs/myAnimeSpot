@@ -20,12 +20,12 @@ function Navbar({ token }) {
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="/" className="flex items-center">
                         <img
-                            src="https://flowbite.com/docs/images/logo.svg"
-                            className="h-8 mr-3"
-                            alt="Flowbite Logo"
+                            src="/assets/logo_.png"
+                            className="h-8 mr-2"
+                            alt="Logo"
                         ></img>
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                            Flowbite
+                        <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                            Home
                         </span>
                     </a>
                     <div className="flex md:order-2 space-x-4">

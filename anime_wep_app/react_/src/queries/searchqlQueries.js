@@ -7,11 +7,6 @@ const searchAnimeQuery = gql`
         Page(page: $page, perPage: $perPage) {
             media(type: ANIME, genre: $genre, season : $season, status: $status,seasonYear: $seasonYear, sort : $sort) {
                 id
-                studios(sort : NAME, isMain : true) {
-                    nodes {
-                        name
-                    }
-                }
                 description(asHtml : true)
                 status
                 genres
