@@ -1,27 +1,26 @@
-import { useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import apolloClient from "../apollo-client";
 import searchAnimeQuery from "../queries/searchqlQueries";
 import AnimeSearchCard from "./AnimeSearchCard";
 import SearchBar from "./SearchBar";
 import FiltersBar from "./FiltersBar";
+import { useStateContext } from "../contexts/ContextProvider";
 
 function AnimeSearch() {
-    const location = useLocation();
-    const searchFilters = location.state;
+    const { filters } = useStateContext();
+
+    console.log(filters);
 
     const { data, loading, error } = useQuery(searchAnimeQuery, {
         client: apolloClient,
         variables: {
             page: 1,
             perPage: 30,
-            ...searchFilters,
+            ...filters,
         },
     });
 
     if (loading) return <p>Loading...</p>;
-
-    console.log(data);
 
     return (
         <div className="">
