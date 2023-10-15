@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.scrollDiv {
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        width: 0px;
+      }
+}
+
+.scrollDiv:hover {
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0,0,0,.2)
+    }
+  }
+
+
+  @media (hover: none) {
+    .scrollDiv {
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0,0,0,.2)
+      }
+    }
+  }

@@ -15,6 +15,8 @@ const searchAnimeQuery = gql`
                 description(asHtml : true)
                 status
                 genres
+                seasonYear
+                season
                 title {
                     english
                     romaji

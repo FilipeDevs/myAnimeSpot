@@ -32,8 +32,9 @@ function AnimeSearch() {
                             title={[anime.title.english, anime.title.romaji]}
                             studios={anime.studios.nodes}
                             description={anime.description}
-                            status={anime.status}
                             genres={anime.genres}
+                            seasonYear={anime.seasonYear}
+                            season={anime.season}
                         />
                     );
                 })}

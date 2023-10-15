@@ -6,28 +6,54 @@ function AnimeSearchCard({
     studios,
     description,
     genres,
-    status,
+    season,
+    seasonYear,
 }) {
     return (
-        <div className="flex">
-            <a
-                href="#"
-                className="flex flex-col bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-            >
-                <img
-                    className="object-cover w-46 h-58 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                    src={image}
-                    alt=""
-                ></img>
-                <div className="flex flex-col p-4 w-56 h-48 line-clamp-8 flex-1">
-                    <h5 className="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white">
-                        {title[0] ? title[0] : title[1]}
-                    </h5>
-                    <p className="mb-3 text-sm font-normal text-gray-700 dark:text-gray-400">
-                        {description}
-                    </p>
+        <div className="w-96 border rounded-lg shadow-lg hover:bg-gray-100 flex">
+            <div className="flex">
+                <div className="w-1/2 relative flex">
+                    <a href="#" className="flex">
+                        <div className="flex relative">
+                            <img
+                                className="rounded-l-lg md:h-auto md:w-64"
+                                src={image}
+                                alt=""
+                            />
+                            <div className="rounded-l-lg absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-center">
+                                <h5 className="font-medium text-sm">
+                                    {title[0] ? title[0] : title[1]}
+                                </h5>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </a>
+
+                <div className="w-1/2 pl-3">
+                    <h5 className="p-1 text-base font-semibold">
+                        {season} - {seasonYear}
+                    </h5>
+                    <div className="h-48 mb-5 overflow-y-auto scrollDiv">
+                        <p
+                            dangerouslySetInnerHTML={{ __html: description }}
+                            className="text-xs"
+                        ></p>
+                    </div>
+                    <div className="">
+                        <div className="pb-2 flex items-center">
+                            <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                                {genres[0]}
+                            </span>
+                            <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                                {genres[1]}
+                            </span>
+                            <button className="bg-green-500 text-white w-5 h-5 rounded-full flex items-center justify-center hover:bg-green-600 focus:outline-none">
+                                <span className="text-sm">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
