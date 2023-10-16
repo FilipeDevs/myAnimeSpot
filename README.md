@@ -1,4 +1,4 @@
-# ANIME WEB APP
+# ANIME WEB APP (Still in development)
 
 This project is a simplified web application inspired by anime webistes like MAL and Anilist, offering basic features to track and explore anime titles.
 
