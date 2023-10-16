@@ -4,19 +4,24 @@ import searchAnimeQuery from "../queries/searchqlQueries";
 import AnimeSearchCard from "./AnimeSearchCard";
 import SearchBar from "./SearchBar";
 import FiltersBar from "./FiltersBar";
-import { useStateContext } from "../contexts/ContextProvider";
+import { useLocation } from "react-router-dom";
 
 function AnimeSearch() {
-    const { filters } = useStateContext();
+    const location = useLocation();
 
-    console.log(filters);
+    const queryParams = {};
+    const urlSearchParams = new URLSearchParams(location.search);
+
+    for (const [key, value] of urlSearchParams.entries()) {
+        queryParams[key] = value;
+    }
 
     const { data, loading, error } = useQuery(searchAnimeQuery, {
         client: apolloClient,
         variables: {
             page: 1,
             perPage: 30,
-            ...filters,
+            ...queryParams,
         },
     });
 

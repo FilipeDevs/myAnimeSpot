@@ -5,8 +5,6 @@ const StateContext = createContext({
     token: null,
     setUser: () => {},
     setToken: () => {},
-    filters: {},
-    setFilters: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -30,8 +28,6 @@ export const ContextProvider = ({ children }) => {
                 token,
                 setUser,
                 setToken,
-                filters,
-                setFilters,
             }}
         >
             {children}
