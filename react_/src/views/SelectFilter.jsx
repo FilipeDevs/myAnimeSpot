@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-function SelectFilter({ name, options, sort, type }) {
+function SelectFilter({ name, options, type }) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [selectValue, setSelectValue] = useState("Any");
 
@@ -9,7 +9,9 @@ function SelectFilter({ name, options, sort, type }) {
     useEffect(() => {
         const selectedValue = searchParams.get(type);
         if (selectedValue) {
-            setSelectValue(selectedValue);
+            setSelectValue(
+                type === "sort" ? selectedValue.split("_")[0] : selectedValue
+            );
         } else {
             setSelectValue("Any");
         }
@@ -29,8 +31,8 @@ function SelectFilter({ name, options, sort, type }) {
                 setSelectValue(selectedOption);
                 params.set(
                     type,
-                    type === "season"
-                        ? selectedOption.toUpperCase()
+                    type === "sort"
+                        ? selectedOption.concat("_DESC")
                         : selectedOption
                 );
                 return params;
@@ -53,7 +55,7 @@ function SelectFilter({ name, options, sort, type }) {
                 onChange={handleChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-                {!sort && <option value="Any">Any</option>}
+                <option value="Any">Any</option>
                 {options.map((option) => (
                     <option key={option} value={option}>
                         {option}

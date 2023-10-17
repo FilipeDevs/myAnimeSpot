@@ -21,14 +21,13 @@ function FiltersBar() {
                 <SelectFilter
                     key={3}
                     name={"Season"}
-                    options={["Fall", "Spring", "Summer", "Fall"]}
+                    options={["FALL", "SPRING", "SUMMER", "FALL"]}
                     type={"season"}
                 />
                 <SelectFilter
                     key={4}
                     name={"Sort"}
-                    options={["Trending", "Popularity"]}
-                    sort={true}
+                    options={["TRENDING", "POPULARITY"]}
                     type={"sort"}
                 />
             </div>
