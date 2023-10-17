@@ -5,6 +5,9 @@ import AnimeSearch from "./AnimeSearch";
 function FilterAndSearch() {
     return (
         <>
+            <div className="text-center py-4">
+                <h1 className="text-2xl font-bold">Browse Anime</h1>
+            </div>
             <SearchBar />
             <FiltersBar />
             <AnimeSearch />
