@@ -3,6 +3,7 @@ import apolloClient from "../apollo-client";
 import searchAnimeQuery from "../queries/searchqlQueries";
 import AnimeSearchCard from "./AnimeSearchCard";
 import { useLocation } from "react-router-dom";
+import Loading from "../components/Loading";
 
 function AnimeSearch() {
     const location = useLocation();
@@ -23,7 +24,7 @@ function AnimeSearch() {
         },
     });
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loading />;
 
     return (
         <div className="">

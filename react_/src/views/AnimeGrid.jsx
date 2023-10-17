@@ -3,6 +3,7 @@ import apolloClient from "../apollo-client";
 import CardAnime from "./CardAnime";
 import { Link } from "react-router-dom";
 import queryString from "query-string";
+import Loading from "../components/Loading";
 
 function AnimeGrid({ name, gqlQuery, searchProps }) {
     const { data, loading, error } = useQuery(gqlQuery, {
@@ -10,7 +11,9 @@ function AnimeGrid({ name, gqlQuery, searchProps }) {
         variables: { page: 1, perPage: 6 },
     });
 
-    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Something went wrong !</p>;
+
+    if (loading) return <Loading />;
 
     return (
         <div className="flex flex-col items-center justify-center py-6">
