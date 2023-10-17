@@ -29,6 +29,8 @@ function SearchBar() {
         const searchValue = searchParams.get("search");
         if (searchValue) {
             setSearchInput(searchValue);
+        } else {
+            setSearchInput("");
         }
     }, [searchParams]);
 
