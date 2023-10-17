@@ -2,8 +2,6 @@ import { useQuery } from "@apollo/client";
 import apolloClient from "../apollo-client";
 import searchAnimeQuery from "../queries/searchqlQueries";
 import AnimeSearchCard from "./AnimeSearchCard";
-import SearchBar from "./SearchBar";
-import FiltersBar from "./FiltersBar";
 import { useLocation } from "react-router-dom";
 
 function AnimeSearch() {
@@ -29,8 +27,6 @@ function AnimeSearch() {
 
     return (
         <div className="">
-            <SearchBar />
-            <FiltersBar />
             <div className="flex flex-col items-center justify-center py-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:grid-cols-3 gap-4 md:grid-cols-1 gap-4 sm:grid-cols-1 gap-3">
                     {data.Page.media.map((anime) => {

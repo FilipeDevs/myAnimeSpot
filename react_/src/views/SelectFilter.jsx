@@ -28,7 +28,6 @@ function SelectFilter({ name, options, type }) {
             });
         } else {
             setSearchParams((params) => {
-                setSelectValue(selectedOption);
                 params.set(
                     type,
                     type === "sort"

@@ -6,6 +6,7 @@ import DefaultLayout from "./components/DefaultLayout";
 import Dashboard from "./views/Dashboard";
 import Home from "./views/Home";
 import AnimeSearch from "./views/AnimeSearch";
+import FilterAndSearch from "./views/FilterAndSearch";
 
 const router = createBrowserRouter([
     {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/search",
-                element: <AnimeSearch />,
+                element: <FilterAndSearch />,
             },
         ],
     },

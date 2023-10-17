@@ -21,7 +21,7 @@ function FiltersBar() {
                 <SelectFilter
                     key={3}
                     name={"Season"}
-                    options={["FALL", "SPRING", "SUMMER", "FALL"]}
+                    options={["FALL", "SPRING", "SUMMER", "WINTER"]}
                     type={"season"}
                 />
                 <SelectFilter
