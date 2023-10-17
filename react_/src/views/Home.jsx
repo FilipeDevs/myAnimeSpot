@@ -1,12 +1,9 @@
+import homePageFilters from "../filtersData/homePageFilters";
 import {
     popularSeasonAnimeQuery,
     trendingAnimeQuery,
     upcomingAnimeQuery,
     popularAllAnimeQuery,
-    currentSeason,
-    currentYear,
-    nextSeason,
-    nextYear,
 } from "../queries/graphqlQueries";
 import AnimeGrid from "./AnimeGrid";
 
@@ -15,34 +12,22 @@ function Main() {
         {
             name: "Trending Anime",
             gqlQuery: trendingAnimeQuery,
-            searchProps: {
-                sort: "TRENDING_DESC",
-            },
+            searchProps: homePageFilters.trending,
         },
         {
             name: "Popular Anime this season",
             gqlQuery: popularSeasonAnimeQuery,
-            searchProps: {
-                season: currentSeason,
-                seasonYear: currentYear,
-                sort: "POPULARITY_DESC",
-            },
+            searchProps: homePageFilters.popular_season,
         },
         {
             name: "Upcoming",
             gqlQuery: upcomingAnimeQuery,
-            searchProps: {
-                season: nextSeason,
-                seasonYear: nextYear,
-                sort: "POPULARITY_DESC",
-            },
+            searchProps: homePageFilters.upcoming,
         },
         {
             name: "All time popular",
             gqlQuery: popularAllAnimeQuery,
-            searchProps: {
-                sort: "POPULARITY_DESC",
-            },
+            searchProps: homePageFilters.all_time_popular,
         },
     ];
 

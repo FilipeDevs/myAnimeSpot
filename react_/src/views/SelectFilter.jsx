@@ -48,7 +48,6 @@ function SelectFilter({ name, options, type }) {
                 {name}
             </label>
             <select
-                defaultValue={selectValue}
                 id="filter"
                 value={selectValue}
                 onChange={handleChange}
