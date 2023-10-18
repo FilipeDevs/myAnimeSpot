@@ -7,6 +7,7 @@ import Dashboard from "./views/Dashboard";
 import Home from "./views/Home";
 import AnimeSearch from "./views/AnimeSearch";
 import FilterAndSearch from "./views/FilterAndSearch";
+import DetailAnime from "./views/DetailAnime";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
                 path: "/search",
                 element: <FilterAndSearch />,
             },
+            {
+                path: "/animeDetail/:id",
+                element : <DetailAnime />
+            }
         ],
     },
     {

@@ -36,6 +36,7 @@ function AnimeGrid({ name, gqlQuery, searchProps }) {
                             key={anime.id}
                             image={anime.coverImage.large}
                             title={[anime.title.english, anime.title.romaji]}
+                            id={anime.id}
                         />
                     );
                 })}

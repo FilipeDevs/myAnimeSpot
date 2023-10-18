@@ -3,9 +3,9 @@ import { gql } from "@apollo/client";
 
 
 const searchAnimeQuery = gql`
-    query ($page: Int, $perPage: Int, $genre : String, $season : MediaSeason, $seasonYear : Int, $sort : [MediaSort], $search: String) {
+    query ($page: Int, $perPage: Int, $genre : String, $season : MediaSeason, $seasonYear : Int, $sort : [MediaSort], $search: String, $id : Int) {
         Page(page: $page, perPage: $perPage) {
-            media(type: ANIME, genre: $genre, season : $season,seasonYear: $seasonYear, sort : $sort, search: $search) {
+            media(id : $id ,type: ANIME, genre: $genre, season : $season,seasonYear: $seasonYear, sort : $sort, search: $search) {
                 id
                 description(asHtml : true)
                 status
@@ -21,6 +21,7 @@ const searchAnimeQuery = gql`
                     large
                     medium
                 }
+                bannerImage
             }
         }
     }
