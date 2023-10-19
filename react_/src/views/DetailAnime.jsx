@@ -5,9 +5,10 @@ import { useQuery } from "@apollo/client";
 import searchAnimeQuery from "../queries/searchqlQueries";
 import AnimeDetailHeader from "../components/anime_detail/AnimeDetailHeader";
 import TabsAnimeDetail from "../components/anime_detail/TabsAnimeDetail";
+import AnimeDetailOverview from "../components/anime_detail/AnimeDetailOverview";
 
 function DetailAnime() {
-    const { id } = useParams();
+    const { id, content } = useParams();
 
     const { data, loading, error } = useQuery(searchAnimeQuery, {
         client: apolloClient,
@@ -34,6 +35,7 @@ function DetailAnime() {
                 genres={data_.genres}
             />
             <TabsAnimeDetail id={data_.id} />
+            {content ? null : <AnimeDetailOverview />}
             <Outlet />
         </>
     );
