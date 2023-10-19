@@ -1,5 +1,5 @@
-import allGenres from "../filtersData/genresData";
-import yearsArray from "../filtersData/yearsData";
+import allGenres from "../../filtersData/genresData";
+import yearsArray from "../../filtersData/yearsData";
 import SelectFilter from "./SelectFilter";
 
 function FiltersBar() {

@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import apolloClient from "../apollo-client";
 import searchAnimeQuery from "../queries/searchqlQueries";
-import AnimeSearchCard from "./AnimeSearchCard";
+import AnimeSearchCard from "../components/anime_search/AnimeSearchCard";
 import { useLocation } from "react-router-dom";
 import Loading from "../components/Loading";
 

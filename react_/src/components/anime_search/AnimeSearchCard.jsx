@@ -28,7 +28,7 @@ function AnimeSearchCard({
                     </a>
                 </div>
 
-                <div className="w-1/2 pl-3">
+                <div className="w-1/2 px-3">
                     <h5 className="p-1 text-base font-semibold">
                         {season} - {seasonYear}
                     </h5>

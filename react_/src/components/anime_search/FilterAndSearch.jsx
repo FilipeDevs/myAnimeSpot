@@ -1,6 +1,6 @@
 import SearchBar from "./SearchBar";
 import FiltersBar from "./FiltersBar";
-import AnimeSearch from "./AnimeSearch";
+import AnimeSearch from "../../views/AnimeSearch";
 
 function FilterAndSearch() {
     return (
