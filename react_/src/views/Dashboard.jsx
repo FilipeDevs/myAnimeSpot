@@ -1,10 +1,13 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet, useParams } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import DashboardTabs from "../components/dashboard/DashboardTabs";
 import AnimeTable from "../components/dashboard/AnimeTable";
+import AnimeListContent from "../components/dashboard/AnimeListContent";
+import AllAnimeLists from "../components/dashboard/AllAnimeLists";
 
 function Dashboard() {
     const { user, token } = useStateContext();
+    const { list } = useParams();
 
     if (!token) {
         // Redirect user if he is not auth
@@ -15,7 +18,8 @@ function Dashboard() {
         <div>
             <span>Hello {user.name} !</span>
             <DashboardTabs />
-            <AnimeTable />
+            {list ? null : <AllAnimeLists />}
+            <Outlet />
         </div>
     );
 }

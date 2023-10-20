@@ -11,6 +11,12 @@ function DashboardTabs() {
                                 to={"/dashboard/"}
                                 className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                             >
+                                All
+                            </Link>
+                            <Link
+                                to={"/dashboard/watching"}
+                                className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                            >
                                 Watching
                             </Link>
                         </li>

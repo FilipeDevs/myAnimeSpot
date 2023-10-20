@@ -28,7 +28,7 @@ const router = createBrowserRouter([
                 element: <Dashboard />,
                 children: [
                     {
-                        path: "/dashboard/:content",
+                        path: "/dashboard/:list",
                         element: <AnimeListContent />,
                     },
                 ],

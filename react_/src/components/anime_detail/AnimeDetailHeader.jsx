@@ -1,4 +1,7 @@
+import axiosClient from "../../axios-client";
+
 function AnimeDetailHeader({
+    id,
     coverImage,
     title,
     description,
@@ -8,7 +11,26 @@ function AnimeDetailHeader({
     season,
     seasonYear,
     genres,
+    episodes,
 }) {
+    const onSubmit = (event) => {
+        event.preventDefault();
+        const payload = {
+            anime_id: id,
+            episodes: episodes,
+            ep_duration: epTime,
+        };
+
+        axiosClient
+            .post("/anime", payload)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <div className="py-10 flex flex-col items-center justify-center">
             <div className="text-center">
@@ -22,19 +44,9 @@ function AnimeDetailHeader({
                     alt="animeCover"
                     className="w-72 h-96 object-cover rounded-lg"
                 />
-                <select
-                    id="countries"
-                    defaultValue={"default"}
-                    className="mt-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                    <option value="default" disabled>
-                        Add to list
-                    </option>
-                    <option value="US">Watching</option>
-                    <option value="CA">Completed</option>
-                    <option value="FR">Dropped</option>
-                    <option value="DE">Planning</option>
-                </select>
+                <button onClick={onSubmit} type="submit" className="submit">
+                    Add to list
+                </button>
             </div>
         </div>
     );

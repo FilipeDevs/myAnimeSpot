@@ -11,7 +11,20 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::apiResource('animes', AnimeListController::class);
+
+    Route::get('/anime', [AnimeListController::class, 'index']);
+
+    Route::get('/anime/{list}', [AnimeListController::class, 'indexList']);
+
+    Route::post('/anime', [AnimeListController::class, 'store']);
+
+    Route::put('/anime/{anime}/update-list', [AnimeListController::class, 'updateList']);
+
+    Route::put('/anime/{anime}/update-progress', [AnimeListController::class, 'updateProgress']);
+
+    Route::delete('/anime/{anime}', [AnimeListController::class, 'destroy']);
+
+
 });
 
 

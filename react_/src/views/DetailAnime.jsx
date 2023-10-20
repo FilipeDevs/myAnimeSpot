@@ -24,6 +24,7 @@ function DetailAnime() {
     return (
         <>
             <AnimeDetailHeader
+                id={data_.id}
                 title={data_.title}
                 coverImage={data_.coverImage.large}
                 description={data_.description}
@@ -33,6 +34,7 @@ function DetailAnime() {
                 season={data_.season}
                 seasonYear={data_.seasonYear}
                 genres={data_.genres}
+                episodes={data_.episodes}
             />
             <TabsAnimeDetail id={data_.id} />
             {content ? null : <AnimeDetailOverview />}

@@ -1,16 +1,9 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import axiosClient from "../../axios-client";
-
-function AnimeListContent() {
-    const { list } = useParams();
-
-    console.log(list);
-
+function AllAnimeLists() {
     const getAnime = () => {
         axiosClient
-            .get(`/anime/${list}`)
+            .get(`/anime`)
             .then(({ data }) => {
                 console.log(data);
             })
@@ -23,7 +16,7 @@ function AnimeListContent() {
         getAnime();
     }, []);
 
-    return <div>WatchingTable</div>;
+    return <div>AllAnimeLists</div>;
 }
 
-export default AnimeListContent;
+export default AllAnimeLists;

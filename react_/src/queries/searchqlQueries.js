@@ -27,6 +27,7 @@ const searchAnimeQuery = gql`
                 genres
                 seasonYear
                 season
+                episodes
                 startDate {
                     year
                     month
