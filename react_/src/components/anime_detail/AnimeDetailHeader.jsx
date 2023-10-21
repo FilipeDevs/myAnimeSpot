@@ -17,6 +17,7 @@ function AnimeDetailHeader({
         event.preventDefault();
         const payload = {
             anime_id: id,
+            title: title,
             episodes: episodes,
             ep_duration: epTime,
         };

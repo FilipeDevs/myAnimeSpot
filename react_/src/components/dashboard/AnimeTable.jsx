@@ -1,6 +1,8 @@
 import React from "react";
 
 function AnimeTable({ title, progress, type, animes, list }) {
+    console.log("Title of Table : " + title);
+
     return (
         <div className="flex justify-center items-center p-5">
             <div>
@@ -24,33 +26,49 @@ function AnimeTable({ title, progress, type, animes, list }) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
-                                <th
-                                    scope="row"
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                >
-                                    Anime title
-                                </th>
+                            {animes.map((anime) => {
+                                return (
+                                    <>
+                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover-bg-gray-600">
+                                            <th
+                                                scope="row"
+                                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {anime.title}{" "}
+                                                {/* Use the title from the anime object */}
+                                            </th>
 
-                                <td className="px-6 py-4">
-                                    0/24{" "}
-                                    <a className="text-xl" href="#">
-                                        +
-                                    </a>
-                                </td>
-                                <td className="px-6 py-4">TV</td>
-                                <td className="px-6 py-4">
-                                    <select
-                                        id="countries"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    >
-                                        <option value="US">Watching</option>
-                                        <option value="CA">Planned</option>
-                                        <option value="FR">Dropped</option>
-                                        <option value="DE">Completed</option>
-                                    </select>
-                                </td>
-                            </tr>
+                                            <td className="px-6 py-4">
+                                                {anime.progress}/
+                                                {anime.episodes}{" "}
+                                                <a className="text-xl" href="#">
+                                                    +
+                                                </a>
+                                            </td>
+                                            <td className="px-6 py-4">TV</td>
+                                            <td className="px-6 py-4">
+                                                <select
+                                                    id="countries"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                >
+                                                    <option value="US">
+                                                        Watching
+                                                    </option>
+                                                    <option value="CA">
+                                                        Planned
+                                                    </option>
+                                                    <option value="FR">
+                                                        Dropped
+                                                    </option>
+                                                    <option value="DE">
+                                                        Completed
+                                                    </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

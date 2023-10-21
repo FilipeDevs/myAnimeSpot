@@ -14,7 +14,7 @@ class AnimeListController extends Controller
     public function index(Request $request)
     {
         $user_id = $request->user()->id;
-        $animeList = UserAnime::all()->where('user_id', $user_id);
+        $animeList = UserAnime::all()->where('user_id', $user_id)->groupBy('list')->reverse();
         return response()->json($animeList);
     }
 
@@ -34,6 +34,7 @@ class AnimeListController extends Controller
     {
         // Create a new UserAnime record
         UserAnime::create([
+            'title' => $request['title'],
             'anime_id' => $request['anime_id'],
             'episodes' => $request['episodes'],
             'ep_duration' => $request['ep_duration'],
