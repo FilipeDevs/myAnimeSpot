@@ -12,15 +12,13 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::get('/anime', [AnimeListController::class, 'index']);
+    Route::get('/anime/index/{anime}', [AnimeListController::class, 'indexAnime']);
 
-    Route::get('/anime/{list}', [AnimeListController::class, 'indexList']);
+    Route::get('/anime', [AnimeListController::class, 'index']);
 
     Route::post('/anime', [AnimeListController::class, 'store']);
 
-    Route::put('/anime/{anime}/update-list', [AnimeListController::class, 'updateList']);
-
-    Route::put('/anime/{anime}/update-progress', [AnimeListController::class, 'updateProgress']);
+    Route::put('/anime/{anime}/update', [AnimeListController::class, 'update']);
 
     Route::delete('/anime/{anime}', [AnimeListController::class, 'destroy']);
 

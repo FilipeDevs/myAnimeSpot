@@ -10,7 +10,7 @@ class AnimeListController extends Controller
 {
 
 
-    // Display all anime lists form user
+    // Display all anime lists from user
     public function index(Request $request)
     {
         $user_id = $request->user()->id;
@@ -18,11 +18,17 @@ class AnimeListController extends Controller
         return response()->json($animeList);
     }
 
+    public function indexAnime(Request $request, $anime_id)
+    {
+        $user_id = $request->user()->id;
+        $anime = UserAnime::where('user_id', $user_id)->where("anime_id", $anime_id)->get();
+        return response()->json($anime);
+    }
+
 
     // Display a listing corresponding to the list passed in the request (watching, planned, ...)
     public function indexList(Request $request, $list)
     {
-        $list = $list == null ? "watching" : $list;
         $user_id = $request->user()->id;
         $animeList = UserAnime::all()->where('user_id', $user_id)->where('list', $list);
         return response()->json($animeList);
@@ -47,32 +53,21 @@ class AnimeListController extends Controller
 
 
     // Update the list of an anime
-    public function updateList(Request $request, $anime_id)
+    public function update(Request $request, $anime_id)
     {
         UserAnime::where("anime_id", $anime_id)->update([
             "list" => $request["list"],
+            "progress" => $request["progress"],
         ]);
 
-        return response("List changed with success !", 201);
-    }
-
-    // Update progress of an anime (if the progress catches the total episodes of that anime the list
-    // is changed to "completed" )
-    public function updateProgress(Request $request, $anime_id)
-    {
-        $oldProgress = UserAnime::where("anime_id", $anime_id)->value("progress");
-
-        UserAnime::where("anime_id", $anime_id)->update([
-            "progress" => $oldProgress + $request["progress"]
-        ]);
-
+        // Check if progress is equal to number of episoded of the anime, if it is the user has completed it.
         if (UserAnime::where("anime_id", $anime_id)->value("progress") == UserAnime::where("anime_id", $anime_id)->value("episodes")) {
             UserAnime::where("anime_id", $anime_id)->update([
                 "list" => "completed",
             ]);
         }
 
-        return response("Progress updated !", 201);
+        return response("Anime updated !", 201);
     }
 
     // Delete existing anime entry

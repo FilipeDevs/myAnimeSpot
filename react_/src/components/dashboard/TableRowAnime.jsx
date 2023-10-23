@@ -5,79 +5,57 @@ import { Link } from "react-router-dom";
 import axiosClient from "../../axios-client";
 import apolloClient from "../../apollo-client";
 import searchAnimeQuery from "../../queries/searchqlQueries";
+import { useMutation } from "react-query";
 
 function TableRowAnime({ title, id, progress, episodes, format, list }) {
-    const [loading_, setLoading] = useState(false);
-
     const { data, loading, error } = useQuery(searchAnimeQuery, {
         client: apolloClient,
         variables: { page: 1, perPage: 6, id: id },
     });
 
-    const changeList = (event, anime_id) => {
-        event.preventDefault();
-        const newList = event.target.value;
-        const payload = {
-            anime_id: anime_id,
-            list: newList,
-        };
-        setLoading(true);
-        axiosClient
-            .put(`/anime/${anime_id}/update-list`, payload)
-            .then((response) => {
-                console.log(`List changed ! ${response}`);
-                setLoading(false);
-                // Refresh the page
-                window.location.reload();
-            })
-            .catch((err) => {
-                console.log(`Error in API : ${err}`);
-            });
-    };
+    const [anime, setAnime] = useState({
+        // Initial anime data
+        id,
+        title,
+        progress,
+        episodes,
+        format,
+        list,
+    });
 
-    const updateProgress = (num, anime_id, currentProgress, episodes) => {
-        event.preventDefault();
-        if (
-            (currentProgress < 1 && num == -1) ||
-            (currentProgress == episodes && num == +1)
-        ) {
-            return;
+    const updateAnime = useMutation(
+        (payload) => axiosClient.put(`/anime/${anime.id}/update`, payload),
+        {
+            onMutate: (updatedAnimeData) => {
+                const oldAnimeData = anime; // Save the current data
+                // Optimistically update the anime data
+                setAnime(updatedAnimeData);
+
+                // Return a context object with the old data for rollback
+                return { oldAnimeData };
+            },
+            onError: (error, variables, context) => {
+                // If the mutation fails, revert the optimistic update
+                const { oldAnimeData } = context;
+                setAnime(oldAnimeData);
+            },
+            onSettled: () => {
+                console.log(anime.id);
+                axiosClient.get(`/anime/index/${anime.id}`).then((response) => {
+                    console.log(response);
+                });
+            },
         }
-        const payload = {
-            anime_id: anime_id,
-            progress: num,
-        };
-        setLoading(true);
-        axiosClient
-            .put(`/anime/${anime_id}/update-progress`, payload)
-            .then((response) => {
-                console.log(response);
-                setLoading(false);
-                // Refresh the page
-                window.location.reload();
-            })
-            .catch((err) => {
-                console.log(`Error in API : ${err}`);
-            });
-    };
+    );
 
-    const deleteAnime = (anime_id) => {
-        event.preventDefault();
+    const updateAnimeEntry = (list, progress) => {
         const payload = {
-            anime_id: anime_id,
+            ...anime,
+            anime_id: id,
+            progress: progress,
+            list: list,
         };
-        setLoading(true);
-        axiosClient
-            .delete(`/anime/${anime_id}`, payload)
-            .then((response) => {
-                console.log(response);
-                setLoading(false);
-                // Refresh the page
-                window.location.reload();
-            })
-            .catch((err) => {
-                console.log(`Error in API : ${err}`);
-            });
+        updateAnime.mutate(payload);
     };
 
     return (
@@ -101,23 +79,23 @@ function TableRowAnime({ title, id, progress, episodes, format, list }) {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                    <Link to={`/animeDetail/${id}`}>{title}</Link>
+                    <Link to={`/animeDetail/${id}`}>{anime.title}</Link>
                 </td>
 
                 <td className="px-6 py-4">
                     <a
                         onClick={() =>
-                            updateProgress(-1, id, progress, episodes)
+                            updateAnimeEntry(anime.list, anime.progress - 1)
                         }
                         className="text-xl"
                         href="#"
                     >
                         -{" "}
                     </a>
-                    {progress}/{episodes ? episodes : " ?"}{" "}
+                    {anime.progress}/{anime.episodes ? anime.episodes : " ?"}{" "}
                     <a
                         onClick={() =>
-                            updateProgress(+1, id, progress, episodes)
+                            updateAnimeEntry(anime.list, anime.progress + 1)
                         }
                         className="text-xl"
                         href="#"
@@ -125,32 +103,33 @@ function TableRowAnime({ title, id, progress, episodes, format, list }) {
                         +
                     </a>
                 </td>
-                <td className="px-6 py-4">{format}</td>
+                <td className="px-6 py-4">{anime.format}</td>
                 <td className="px-6 py-4">
-                    {loading_ ? (
-                        <Loading />
-                    ) : (
-                        <div className="flex">
-                            <select
-                                defaultValue={list}
-                                onChange={(event) => changeList(event, id)}
-                                id="countries"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mr-2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            >
-                                <option value="watching">Watching</option>
-                                <option value="planned">Planned</option>
-                                <option value="dropped">Dropped</option>
-                                <option value="completed">Completed</option>
-                            </select>
-                            <a
-                                href="#"
-                                onClick={() => deleteAnime(id)}
-                                className="mt-2 font-medium text-red-600 dark:text-red-500 hover:underline"
-                            >
-                                Remove
-                            </a>
-                        </div>
-                    )}
+                    <div className="flex">
+                        <select
+                            defaultValue={anime.list}
+                            onChange={(event) =>
+                                updateAnimeEntry(
+                                    event.target.value,
+                                    anime.progress
+                                )
+                            }
+                            id="countries"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mr-2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value="watching">Watching</option>
+                            <option value="planned">Planned</option>
+                            <option value="dropped">Dropped</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                        <a
+                            href="#"
+                            onClick={() => deleteAnime(anime.id)}
+                            className="mt-2 font-medium text-red-600 dark:text-red-500 hover:underline"
+                        >
+                            Remove
+                        </a>
+                    </div>
                 </td>
             </tr>
         </>
