@@ -35,6 +35,7 @@ class AnimeListController extends Controller
         // Create a new UserAnime record
         UserAnime::create([
             'title' => $request['title'],
+            'format' => $request['format'],
             'anime_id' => $request['anime_id'],
             'episodes' => $request['episodes'],
             'ep_duration' => $request['ep_duration'],
@@ -46,21 +47,39 @@ class AnimeListController extends Controller
 
 
     // Update the list of an anime
-    public function updateList()
+    public function updateList(Request $request, $anime_id)
     {
+        UserAnime::where("anime_id", $anime_id)->update([
+            "list" => $request["list"],
+        ]);
 
+        return response("List changed with success !", 201);
     }
 
     // Update progress of an anime (if the progress catches the total episodes of that anime the list
     // is changed to "completed" )
-    public function updateProgress(Request $request)
+    public function updateProgress(Request $request, $anime_id)
     {
+        $oldProgress = UserAnime::where("anime_id", $anime_id)->value("progress");
 
+        UserAnime::where("anime_id", $anime_id)->update([
+            "progress" => $oldProgress + $request["progress"]
+        ]);
+
+        if (UserAnime::where("anime_id", $anime_id)->value("progress") == UserAnime::where("anime_id", $anime_id)->value("episodes")) {
+            UserAnime::where("anime_id", $anime_id)->update([
+                "list" => "completed",
+            ]);
+        }
+
+        return response("Progress updated !", 201);
     }
 
     // Delete existing anime entry
-    public function destroy(Request $request)
+    public function destroy(Request $request, $anime_id)
     {
+        UserAnime::where("anime_id", $anime_id)->delete();
 
+        return response("Anime deleted  !", 201);
     }
 }

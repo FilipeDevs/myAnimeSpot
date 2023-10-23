@@ -14,12 +14,13 @@ return new class extends Migration {
         Schema::create('user_animes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('format');
             $table->unsignedBigInteger('anime_id');
             $table->foreignId('user_id');
             $table->enum('list', ['watching', 'planned', 'dropped', 'completed'])->default('watching');
             $table->integer('progress')->default(0);
-            $table->integer('episodes');
-            $table->integer('ep_duration');
+            $table->integer('episodes')->nullable(true);
+            $table->integer('ep_duration')->nullable(true);
             $table->timestamps();
         });
     }

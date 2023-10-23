@@ -12,12 +12,14 @@ function AnimeDetailHeader({
     seasonYear,
     genres,
     episodes,
+    format,
 }) {
     const onSubmit = (event) => {
         event.preventDefault();
         const payload = {
             anime_id: id,
-            title: title,
+            format: format,
+            title: title.english ? title.english : title.romaji,
             episodes: episodes,
             ep_duration: epTime,
         };

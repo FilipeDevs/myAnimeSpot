@@ -25,6 +25,7 @@ const searchAnimeQuery = gql`
                 description(asHtml: true)
                 status
                 genres
+                format
                 seasonYear
                 season
                 episodes
@@ -51,7 +52,6 @@ const searchAnimeQuery = gql`
                 coverImage {
                     large
                 }
-                bannerImage
             }
         }
     }

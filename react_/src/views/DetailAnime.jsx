@@ -35,6 +35,7 @@ function DetailAnime() {
                 seasonYear={data_.seasonYear}
                 genres={data_.genres}
                 episodes={data_.episodes}
+                format={data_.format}
             />
             <TabsAnimeDetail id={data_.id} />
             {content ? null : <AnimeDetailOverview />}

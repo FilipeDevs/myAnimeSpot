@@ -24,7 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::delete('/anime/{anime}', [AnimeListController::class, 'destroy']);
 
-
 });
 
 
