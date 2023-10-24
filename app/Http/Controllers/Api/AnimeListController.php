@@ -18,10 +18,10 @@ class AnimeListController extends Controller
         return response()->json($animeList);
     }
 
-    public function indexAnime(Request $request, $anime_id)
+    public function indexAnime(Request $request, $id)
     {
         $user_id = $request->user()->id;
-        $anime = UserAnime::where('user_id', $user_id)->where("anime_id", $anime_id)->get();
+        $anime = UserAnime::where('user_id', $user_id)->where("id", $id)->get();
         return response()->json($anime);
     }
 
@@ -40,9 +40,9 @@ class AnimeListController extends Controller
     {
         // Create a new UserAnime record
         UserAnime::create([
+            'id' => $request['id'],
             'title' => $request['title'],
             'format' => $request['format'],
-            'anime_id' => $request['anime_id'],
             'episodes' => $request['episodes'],
             'ep_duration' => $request['ep_duration'],
             'user_id' => $request->user()->id,
@@ -53,16 +53,16 @@ class AnimeListController extends Controller
 
 
     // Update the list of an anime
-    public function update(Request $request, $anime_id)
+    public function update(Request $request, $id)
     {
-        UserAnime::where("anime_id", $anime_id)->update([
+        UserAnime::where("id", $id)->update([
             "list" => $request["list"],
             "progress" => $request["progress"],
         ]);
 
         // Check if progress is equal to number of episoded of the anime, if it is the user has completed it.
-        if (UserAnime::where("anime_id", $anime_id)->value("progress") == UserAnime::where("anime_id", $anime_id)->value("episodes")) {
-            UserAnime::where("anime_id", $anime_id)->update([
+        if (UserAnime::where("id", $id)->value("progress") == UserAnime::where("id", $id)->value("episodes")) {
+            UserAnime::where("id", $id)->update([
                 "list" => "completed",
             ]);
         }

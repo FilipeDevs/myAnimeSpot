@@ -17,7 +17,7 @@ function AnimeDetailHeader({
     const onSubmit = (event) => {
         event.preventDefault();
         const payload = {
-            anime_id: id,
+            id: id,
             format: format,
             title: title.english ? title.english : title.romaji,
             episodes: episodes,

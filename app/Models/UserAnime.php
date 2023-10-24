@@ -12,10 +12,10 @@ class UserAnime extends Model
     protected $table = 'user_animes';
 
     protected $fillable = [
+        'id',
         'title',
         'format',
         'user_id',
-        'anime_id',
         'list',
         'progress',
         'episodes',

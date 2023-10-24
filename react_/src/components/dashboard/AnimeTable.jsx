@@ -1,18 +1,15 @@
 import TableRowAnime from "./TableRowAnime";
 
-function AnimeTable({ title, animes }) {
+function AnimeTable({ animes }) {
     return (
-        <div className="flex justify-center items-center p-5">
+        <div className="flex justify-center items-center p-5 overflow-x-auto">
             <div>
-                <h1 className="text-xl font-bold text-center m-3">
-                    {title.toUpperCase()}
-                </h1>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <div className="shadow-md sm:rounded-lg">
+                    <table className="text-sm text-left text-gray-500 dark:text-gray-400 table-auto">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    <span className="sr-only">Image</span>
+                                    Image
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Title
@@ -32,13 +29,8 @@ function AnimeTable({ title, animes }) {
                             {animes.map((anime, index) => {
                                 return (
                                     <TableRowAnime
-                                        key={index}
-                                        title={anime.title}
-                                        id={anime.anime_id}
-                                        progress={anime.progress}
-                                        episodes={anime.episodes}
-                                        format={anime.format}
-                                        list={anime.list}
+                                        key={anime.id}
+                                        anime={anime}
                                     />
                                 );
                             })}

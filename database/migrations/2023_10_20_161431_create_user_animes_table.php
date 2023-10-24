@@ -12,10 +12,9 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('user_animes', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->primary();
             $table->string('title');
             $table->string('format');
-            $table->unsignedBigInteger('anime_id');
             $table->foreignId('user_id');
             $table->enum('list', ['watching', 'planned', 'dropped', 'completed'])->default('watching');
             $table->integer('progress')->default(0);

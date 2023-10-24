@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import axiosCLient from "../axios-client";
 
 function DefaultLayout() {
-    console.log("Component rendered");
     const { token, setUser } = useStateContext();
 
     useEffect(() => {
