@@ -19,7 +19,7 @@ function AnimeSearchCard({
                                 src={image}
                                 alt=""
                             />
-                            <div className="rounded-l-lg absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-center">
+                            <div className="rounded-bl absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-center">
                                 <h5 className="font-medium text-sm">
                                     {title[0] ? title[0] : title[1]}
                                 </h5>
@@ -29,7 +29,7 @@ function AnimeSearchCard({
                 </div>
 
                 <div className="w-1/2 px-3">
-                    <h5 className="p-1 text-base font-semibold">
+                    <h5 className="my-1 text-base text-gray-800">
                         {season} - {seasonYear}
                     </h5>
                     <div className="h-48 mb-5 overflow-y-auto scrollDiv">

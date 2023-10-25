@@ -1,5 +1,5 @@
 import axiosClient from "../../axios-client";
-import AnimeTable from "./AnimeTable";
+import UserAnimeGrid from "./UserAnimeGrid";
 import Loading from "../Loading";
 import { useQuery } from "react-query";
 
@@ -8,7 +8,7 @@ const getUserAnime = async () => {
     return response.data;
 };
 
-function AllAnimeLists() {
+function AllUserAnime() {
     const { data, isLoading, isError } = useQuery("user_animes", getUserAnime);
 
     if (isLoading) return <Loading />;
@@ -18,10 +18,12 @@ function AllAnimeLists() {
             <h1>All</h1>
             {Object.keys(data).map((anime, index) => {
                 const anime_ = data[anime];
-                return <AnimeTable key={index} animes={anime_} />;
+                return (
+                    <UserAnimeGrid key={index} title={anime} animes={anime_} />
+                );
             })}
         </div>
     );
 }
 
-export default AllAnimeLists;
+export default AllUserAnime;
