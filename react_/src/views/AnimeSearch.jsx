@@ -4,6 +4,7 @@ import searchAnimeQuery from "../queries/searchqlQueries";
 import AnimeSearchCard from "../components/anime_search/AnimeSearchCard";
 import { useLocation } from "react-router-dom";
 import Loading from "../components/Loading";
+import NothingFound from "../components/NothingFound";
 
 function AnimeSearch() {
     const location = useLocation();
@@ -29,6 +30,7 @@ function AnimeSearch() {
     return (
         <div className="">
             <div className="flex flex-col items-center justify-center py-6">
+                {data.Page.media.length == 0 && <NothingFound />}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:grid-cols-3 gap-4 md:grid-cols-1 gap-4 sm:grid-cols-1 gap-3">
                     {data.Page.media.map((anime) => {
                         return (

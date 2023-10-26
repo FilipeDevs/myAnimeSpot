@@ -11,7 +11,7 @@ function UserAnimeForm({ anime, onClose, image, queryKey }) {
         const newValue = e.target.value;
         if (
             newValue >= 0 &&
-            newValue <= (anime.episodes ? anime.episodes : 1000)
+            newValue <= (anime.episodes ? anime.episodes : Infinity)
         ) {
             setInputProgress(newValue);
         } else {

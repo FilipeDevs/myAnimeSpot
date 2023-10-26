@@ -2,6 +2,7 @@ import axiosClient from "../../axios-client";
 import UserAnimeGrid from "./UserAnimeGrid";
 import Loading from "../Loading";
 import { useQuery } from "react-query";
+import NothingFound from "../NothingFound";
 
 const getUserAnime = async () => {
     const response = await axiosClient.get(`/anime`);
@@ -16,17 +17,21 @@ function AllUserAnime() {
 
     return (
         <div className="">
-            {Object.keys(data).map((anime, index) => {
-                const anime_ = data[anime];
-                return (
-                    <UserAnimeGrid
-                        key={index}
-                        title={anime}
-                        animes={anime_}
-                        queryKey={queryKey}
-                    />
-                );
-            })}
+            {Array.isArray(data) && data.length == 0 ? (
+                <NothingFound />
+            ) : (
+                Object.keys(data).map((list, index) => {
+                    const animes = data[list];
+                    return (
+                        <UserAnimeGrid
+                            key={index}
+                            title={list}
+                            animes={animes}
+                            queryKey={queryKey}
+                        />
+                    );
+                })
+            )}
         </div>
     );
 }
