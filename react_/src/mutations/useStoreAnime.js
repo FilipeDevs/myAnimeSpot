@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "react-query";
 import axiosClient from "../axios-client";
 
-function useStoreAnime() {
+function useStoreAnime(queryKey) {
     const queryClient = useQueryClient();
 
     const storeAnimeRequest = async (payload) => {
@@ -10,11 +10,15 @@ function useStoreAnime() {
     };
 
     const storeAnime = useMutation(storeAnimeRequest, {
+        onMutate: async () => {
+            await queryClient.cancelQueries(queryKey);
+            // Maybe add optimistic update here, so there is no delay to the edit button
+        },
         onError: (error, variables, context) => {
             //
         },
         onSettled: () => {
-            // Refetch if current anime is in the user's list
+            queryClient.invalidateQueries(queryKey);
         },
     });
 

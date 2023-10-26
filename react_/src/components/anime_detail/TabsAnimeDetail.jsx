@@ -23,14 +23,6 @@ function TabsAnimeDetail({ id }) {
                                 Characters
                             </Link>
                         </li>
-                        <li className="mr-2">
-                            <Link
-                                to={"/animeDetail/" + id + "/recommendations"}
-                                className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                            >
-                                Recommendations
-                            </Link>
-                        </li>
                     </ul>
                 </div>
             </div>

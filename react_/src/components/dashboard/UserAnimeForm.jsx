@@ -2,7 +2,7 @@ import { useState } from "react";
 import useUpdateAnime from "../../mutations/useUpdateAnime";
 import useDestroyAnime from "../../mutations/useDestroyAnime";
 
-function UserAnimeForm({ anime, onClose, image, queryKey }) {
+function UserAnimeForm({ anime, onClose, queryKey }) {
     const [inputProgress, setInputProgress] = useState(anime.progress);
     const { updateAnime } = useUpdateAnime(queryKey);
     const { destroyAnime } = useDestroyAnime(queryKey);
@@ -47,7 +47,7 @@ function UserAnimeForm({ anime, onClose, image, queryKey }) {
                     <div className="flex items-center">
                         <img
                             className="w-36 h-48 rounded mr-4"
-                            src={image}
+                            src={anime.image_link}
                             alt={anime.title}
                         />
                         <div>
