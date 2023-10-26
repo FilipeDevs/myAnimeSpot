@@ -68,6 +68,7 @@ function UserAnimeCard({ anime, queryKey }) {
                     </button>
                     {isModalOpen && (
                         <UserAnimeForm
+                            queryKey={queryKey}
                             anime={anime}
                             image={anime.image_link}
                             onClose={() => setIsModalOpen(false)}

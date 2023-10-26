@@ -1,9 +1,11 @@
 import { useState } from "react";
 import useUpdateAnime from "../../mutations/useUpdateAnime";
+import useDestroyAnime from "../../mutations/useDestroyAnime";
 
-function UserAnimeForm({ anime, onClose, image }) {
+function UserAnimeForm({ anime, onClose, image, queryKey }) {
     const [inputProgress, setInputProgress] = useState(anime.progress);
-    const { updateAnime } = useUpdateAnime();
+    const { updateAnime } = useUpdateAnime(queryKey);
+    const { destroyAnime } = useDestroyAnime(queryKey);
 
     const handleInputChange = (e) => {
         const newValue = e.target.value;
@@ -26,6 +28,11 @@ function UserAnimeForm({ anime, onClose, image }) {
             list: selectedList,
         };
         updateAnime.mutate(payload);
+        onClose();
+    };
+
+    const handleDelete = () => {
+        destroyAnime.mutate(anime.id);
         onClose();
     };
 
@@ -94,7 +101,10 @@ function UserAnimeForm({ anime, onClose, image }) {
                                             onChange={handleInputChange}
                                         />
                                         <span className="ml-1 mt-1 text-lg">
-                                            / {anime.episodes}
+                                            /{" "}
+                                            {anime.episodes
+                                                ? anime.episodes
+                                                : "-"}
                                         </span>
                                     </div>
                                 </div>
@@ -108,6 +118,7 @@ function UserAnimeForm({ anime, onClose, image }) {
                                     </button>
                                     <button
                                         type="button"
+                                        onClick={handleDelete}
                                         className="mr-2 px-3 py-1 bg-red-500 text-white rounded text-sm"
                                     >
                                         Delete

@@ -81,9 +81,10 @@ class AnimeListController extends Controller
     }
 
     // Delete existing anime entry
-    public function destroy(Request $request, $anime_id)
+    public function destroy(Request $request, $id)
     {
-        UserAnime::where("anime_id", $anime_id)->delete();
+        $user_id = $request->user()->id;
+        UserAnime::where('user_id', $user_id)->where('id', $id)->delete();
 
         return response("Anime deleted  !", 201);
     }
