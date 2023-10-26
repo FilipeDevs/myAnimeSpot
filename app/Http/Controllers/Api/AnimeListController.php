@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\UserAnime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class AnimeListController extends Controller
 {
@@ -14,8 +15,16 @@ class AnimeListController extends Controller
     public function index(Request $request)
     {
         $user_id = $request->user()->id;
-        $animeList = UserAnime::all()->where('user_id', $user_id)->groupBy('list')->reverse();
-        return response()->json($animeList);
+        $animeList = UserAnime::all()->where('user_id', $user_id)->groupBy('list');
+
+        // custom order (watching list will be first, followed by planned list, ...)
+        $sortedAnimeList = $animeList->sortBy(function ($groupedItems, $list) {
+            $customOrder = ['watching', 'planned', 'dropped', 'completed'];
+            $position = array_search($list, $customOrder);
+            return $position;
+        });
+
+        return response()->json($sortedAnimeList);
     }
 
     public function indexAnime(Request $request, $id)
@@ -25,12 +34,12 @@ class AnimeListController extends Controller
         return response()->json($anime);
     }
 
-
     // Display a listing corresponding to the list passed in the request (watching, planned, ...)
     public function indexList(Request $request, $list)
     {
         $user_id = $request->user()->id;
-        $animeList = UserAnime::all()->where('user_id', $user_id)->where('list', $list);
+        $animeList = UserAnime::where('user_id', $user_id)->where('list', $list)->get();
+
         return response()->json($animeList);
     }
 
@@ -46,6 +55,7 @@ class AnimeListController extends Controller
             'episodes' => $request['episodes'],
             'ep_duration' => $request['ep_duration'],
             'user_id' => $request->user()->id,
+            'image_link' => $request['image_link'],
         ]);
 
         return response("Anime added", 201);

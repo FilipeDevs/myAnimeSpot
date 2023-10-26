@@ -1,67 +1,12 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
-import axiosClient from "../../axios-client";
+import useUpdateAnime from "../../mutations/useUpdateAnime";
 
 function UserAnimeForm({ anime, onClose, image }) {
     const [inputProgress, setInputProgress] = useState(anime.progress);
-
-    const handleSave = () => {
-        const selectedList = document.getElementById("selectList").value; // Get the selected option value
-        updateAnimeEntry(selectedList, inputProgress);
-        onClose();
-    };
-
-    const updateAnimeRequest = async (payload) => {
-        const response = await axiosClient.put(
-            `/anime/${payload.id}/update`,
-            payload
-        );
-        return response.data;
-    };
-
-    const queryClient = useQueryClient();
-
-    const updateAnime = useMutation(updateAnimeRequest, {
-        onMutate: async (updatedAnimeData) => {
-            // Stop the queries that may affect the update
-            await queryClient.cancelQueries("user_animes");
-
-            // Get a snapshot of current data
-            const previousAnimeData = queryClient.getQueryData("user_animes");
-
-            // Modify cache to reflect this optimistic update
-            queryClient.setQueryData("user_animes", (oldData) => {
-                // Create a copy of the old data
-                const newData = { ...oldData };
-
-                Object.keys(newData).forEach((oldAnime) => {
-                    newData[oldAnime] = newData[oldAnime].map((anime_) => {
-                        if (anime_.id === anime.id) {
-                            // Update the anime data with the new data
-                            return updatedAnimeData;
-                        }
-                        return anime_;
-                    });
-                });
-
-                return newData;
-            });
-
-            // Return a context object with the old data for rollback
-            return { previousAnimeData };
-        },
-        onError: (error, variables, context) => {
-            // Rollback the changes using the snapshot
-            queryClient.setQueryData("user_animes", context.previousAnimeData);
-        },
-        onSettled: () => {
-            queryClient.invalidateQueries("user_animes");
-        },
-    });
+    const { updateAnime } = useUpdateAnime();
 
     const handleInputChange = (e) => {
         const newValue = e.target.value;
-        // Ensure the value is within the valid range
         if (
             newValue >= 0 &&
             newValue <= (anime.episodes ? anime.episodes : 1000)
@@ -72,14 +17,16 @@ function UserAnimeForm({ anime, onClose, image }) {
         }
     };
 
-    const updateAnimeEntry = (list, progress) => {
+    const handleSave = () => {
+        const selectedList = document.getElementById("selectList").value;
         const payload = {
             ...anime,
             id: anime.id,
-            progress: progress,
-            list: list,
+            progress: inputProgress,
+            list: selectedList,
         };
         updateAnime.mutate(payload);
+        onClose();
     };
 
     return (

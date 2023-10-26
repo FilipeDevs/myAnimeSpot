@@ -19,25 +19,12 @@ function DetailAnime() {
 
     if (loading) return <Loading />;
 
-    const data_ = data.Page.media[0];
+    const anime = data.Page.media[0];
 
     return (
         <>
-            <AnimeDetailHeader
-                id={data_.id}
-                title={data_.title}
-                coverImage={data_.coverImage.large}
-                description={data_.description}
-                status={data_.status}
-                epTime={data_.duration}
-                startDate={data_.startDate}
-                season={data_.season}
-                seasonYear={data_.seasonYear}
-                genres={data_.genres}
-                episodes={data_.episodes}
-                format={data_.format}
-            />
-            <TabsAnimeDetail id={data_.id} />
+            <AnimeDetailHeader anime={anime} />
+            <TabsAnimeDetail id={anime.id} />
             {content ? null : <AnimeDetailOverview />}
             <Outlet />
         </>

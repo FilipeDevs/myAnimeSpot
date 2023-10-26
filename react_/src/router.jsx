@@ -8,7 +8,7 @@ import Home from "./views/Home";
 import FilterAndSearch from "./components/anime_search/FilterAndSearch";
 import DetailAnime from "./views/DetailAnime";
 import AnimeDetailContent from "./components/anime_detail/AnimeDetailContent";
-import AnimeListContent from "./components/dashboard/AnimeListContent";
+import UserListAnime from "./components/dashboard/UserListAnime";
 
 const router = createBrowserRouter([
     {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "/dashboard/:list",
-                        element: <AnimeListContent />,
+                        element: <UserListAnime />,
                     },
                 ],
             },

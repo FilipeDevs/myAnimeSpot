@@ -16,6 +16,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/anime', [AnimeListController::class, 'index']);
 
+    Route::get('/anime/{list}', [AnimeListController::class, 'indexList']);
+
     Route::post('/anime', [AnimeListController::class, 'store']);
 
     Route::put('/anime/{anime}/update', [AnimeListController::class, 'update']);

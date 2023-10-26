@@ -1,66 +1,10 @@
-import Loading from "../Loading";
-import { useMutation, useQueryClient } from "react-query";
-import { useQuery } from "@apollo/client";
-import axiosClient from "../../axios-client";
-import apolloClient from "../../apollo-client";
-import searchAnimeQuery from "../../queries/searchqlQueries";
 import { useState } from "react";
 import UserAnimeForm from "./UserAnimeForm";
+import useUpdateAnime from "../../mutations/useUpdateAnime";
 
-const updateAnimeRequest = async (payload) => {
-    const response = await axiosClient.put(
-        `/anime/${payload.id}/update`,
-        payload
-    );
-    return response.data;
-};
-
-function UserAnimeCard({ anime }) {
-    const { data, loading, error } = useQuery(searchAnimeQuery, {
-        client: apolloClient,
-        variables: { page: 1, perPage: 6, id: anime.id },
-    });
+function UserAnimeCard({ anime, queryKey }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const queryClient = useQueryClient();
-
-    const updateAnime = useMutation(updateAnimeRequest, {
-        onMutate: async (updatedAnimeData) => {
-            // Stop the queries that may affect the update
-            await queryClient.cancelQueries("user_animes");
-
-            // Get a snapshot of current data
-            const previousAnimeData = queryClient.getQueryData("user_animes");
-
-            // Modify cache to reflect this optimistic update
-            queryClient.setQueryData("user_animes", (oldData) => {
-                // Create a copy of the old data
-                const newData = { ...oldData };
-
-                Object.keys(newData).forEach((oldAnime) => {
-                    newData[oldAnime] = newData[oldAnime].map((anime_) => {
-                        if (anime_.id === anime.id) {
-                            // Update the anime data with the new data
-                            return updatedAnimeData;
-                        }
-                        return anime_;
-                    });
-                });
-
-                return newData;
-            });
-
-            // Return a context object with the old data for rollback
-            return { previousAnimeData };
-        },
-        onError: (error, variables, context) => {
-            // Rollback the changes using the snapshot
-            queryClient.setQueryData("user_animes", context.previousAnimeData);
-        },
-        onSettled: () => {
-            queryClient.invalidateQueries("user_animes");
-        },
-    });
+    const { updateAnime } = useUpdateAnime(queryKey);
 
     const updateAnimeEntry = (list, progress) => {
         const payload = {
@@ -78,15 +22,11 @@ function UserAnimeCard({ anime }) {
                 <div className="w-1/2 relative flex">
                     <a href="#" className="flex">
                         <div className="flex relative">
-                            {loading ? (
-                                <Loading />
-                            ) : (
-                                <img
-                                    className="rounded-l-lg h-auto w-64"
-                                    src={data.Page.media[0].coverImage.large}
-                                    alt="userAnime"
-                                />
-                            )}
+                            <img
+                                className="rounded-l-lg h-auto w-64"
+                                src={anime.image_link}
+                                alt="userAnime"
+                            />
                         </div>
                     </a>
                 </div>
@@ -129,7 +69,7 @@ function UserAnimeCard({ anime }) {
                     {isModalOpen && (
                         <UserAnimeForm
                             anime={anime}
-                            image={data.Page.media[0].coverImage.large}
+                            image={anime.image_link}
                             onClose={() => setIsModalOpen(false)}
                         />
                     )}

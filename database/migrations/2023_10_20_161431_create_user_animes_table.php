@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->integer('progress')->default(0);
             $table->integer('episodes')->nullable(true);
             $table->integer('ep_duration')->nullable(true);
+            $table->string('image_link'); // Add the image_link column
             $table->timestamps();
         });
     }

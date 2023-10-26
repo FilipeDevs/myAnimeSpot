@@ -20,6 +20,7 @@ class UserAnime extends Model
         'progress',
         'episodes',
         'ep_duration',
+        'image_link'
     ];
 
     public function user()

@@ -9,17 +9,22 @@ const getUserAnime = async () => {
 };
 
 function AllUserAnime() {
-    const { data, isLoading, isError } = useQuery("user_animes", getUserAnime);
+    const queryKey = "user_animes";
+    const { data, isLoading, isError } = useQuery(queryKey, getUserAnime);
 
     if (isLoading) return <Loading />;
 
     return (
         <div className="">
-            <h1>All</h1>
             {Object.keys(data).map((anime, index) => {
                 const anime_ = data[anime];
                 return (
-                    <UserAnimeGrid key={index} title={anime} animes={anime_} />
+                    <UserAnimeGrid
+                        key={index}
+                        title={anime}
+                        animes={anime_}
+                        queryKey={queryKey}
+                    />
                 );
             })}
         </div>

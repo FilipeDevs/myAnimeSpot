@@ -16,8 +16,7 @@ function Dashboard() {
         <div>
             <span>Hello {user.name} !</span>
             <DashboardTabs />
-            {list ? null : <AllUserAnime />}
-            <Outlet />
+            {list ? <Outlet /> : <AllUserAnime />}
         </div>
     );
 }
