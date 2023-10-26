@@ -4,11 +4,12 @@ import CardAnime from "./CardAnime";
 import { Link } from "react-router-dom";
 import queryString from "query-string";
 import Loading from "../components/Loading";
+import searchAnimeQuery from "../queries/searchqlQueries";
 
-function AnimeGrid({ name, gqlQuery, searchProps }) {
-    const { data, loading, error } = useQuery(gqlQuery, {
+function AnimeGrid({ name, searchProps }) {
+    const { data, loading, error } = useQuery(searchAnimeQuery, {
         client: apolloClient,
-        variables: { page: 1, perPage: 6 },
+        variables: { page: 1, perPage: 6, ...searchProps },
     });
 
     if (error) return <p>Something went wrong !</p>;
@@ -31,14 +32,7 @@ function AnimeGrid({ name, gqlQuery, searchProps }) {
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-6 gap-4 md:grid-cols-3 gap-4 sm:grid-cols-2 gap-4">
                 {data.Page.media.map((anime) => {
-                    return (
-                        <CardAnime
-                            key={anime.id}
-                            image={anime.coverImage.large}
-                            title={[anime.title.english, anime.title.romaji]}
-                            id={anime.id}
-                        />
-                    );
+                    return <CardAnime key={anime.id} anime={anime} />;
                 })}
             </div>
         </div>
