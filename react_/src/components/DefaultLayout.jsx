@@ -16,9 +16,11 @@ function DefaultLayout() {
     }, []);
 
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <Navbar token={token} />
-            <Outlet />
+            <main className="flex-grow">
+                <Outlet />
+            </main>
             <Footer />
         </div>
     );

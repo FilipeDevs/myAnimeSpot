@@ -32,7 +32,7 @@ function Main() {
     ];
 
     return (
-        <div>
+        <div className="mb-10">
             {animeGridData.map((data, index) => (
                 <AnimeGrid
                     key={index}

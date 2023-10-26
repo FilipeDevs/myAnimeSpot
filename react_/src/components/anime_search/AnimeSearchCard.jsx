@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function AnimeSearchCard({
+    id,
     image,
     title,
     description,
@@ -12,7 +14,7 @@ function AnimeSearchCard({
         <div className="w-96 border rounded-lg shadow-lg hover:bg-gray-100 flex">
             <div className="flex">
                 <div className="w-1/2 relative flex">
-                    <a href="#" className="flex">
+                    <Link className="flex" to={`/animeDetail/${id}`}>
                         <div className="flex relative">
                             <img
                                 className="rounded-l-lg md:h-auto md:w-64"
@@ -25,7 +27,7 @@ function AnimeSearchCard({
                                 </h5>
                             </div>
                         </div>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="w-1/2 px-3">
