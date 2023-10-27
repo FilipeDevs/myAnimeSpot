@@ -28,7 +28,7 @@ function Navbar({ token }) {
                         ></img>
                         <Link
                             to={"/"}
-                            className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+                            className="self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:text-blue-700 "
                         >
                             Home
                         </Link>
