@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function CardAnime({ anime }) {
     return (
         <div className="flex flex-col items-center text-center">
-            <Link to={`/animeDetail/${anime.id}`} state={anime}>
+            <Link to={`/animeDetail/${anime.id}`}>
                 <img
                     className="h-64 w-48 object-cover rounded-lg" // Adjust the width and height as needed
                     src={anime.coverImage.large}

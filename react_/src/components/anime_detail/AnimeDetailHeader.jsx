@@ -1,8 +1,23 @@
 import { useStateContext } from "../../contexts/ContextProvider";
 import DetailButton from "../common/DetailButton";
+import Loading from "../../components/Loading";
+import searchAnimeQuery from "../../queries/searchqlQueries";
+import { useQuery } from "@apollo/client";
+import apolloClient from "../../apollo-client";
 
-function AnimeDetailHeader({ anime }) {
+function AnimeDetailHeader({ id }) {
     const { token } = useStateContext();
+
+    const { data, loading, error } = useQuery(searchAnimeQuery, {
+        client: apolloClient,
+        variables: { page: 1, perPage: 6, id: id },
+    });
+
+    if (error) return <p>Something went wrong !</p>;
+
+    if (loading) return <Loading />;
+
+    const anime = data.Page.media[0];
 
     return (
         <div className="py-10 flex flex-col items-center justify-center">

@@ -1,5 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
-import AnimeDetailOverview from "./AnimeDetailOverview";
+import { Link } from "react-router-dom";
 
 function TabsAnimeDetail({ id }) {
     return (
