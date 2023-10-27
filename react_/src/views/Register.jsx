@@ -30,13 +30,12 @@ function Register() {
         axiosClient
             .post("/register", payload)
             .then((response) => {
-                setUser(response.data.user);
+                setUser(response.data.user.name);
                 setToken(response.data.token);
             })
             .catch((err) => {
                 const response = err.response;
                 if (response && response.status === 422) {
-                    console.log(response.data.errors);
                     setErros(response.data.errors);
                 }
             });

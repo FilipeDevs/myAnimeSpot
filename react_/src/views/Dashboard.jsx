@@ -12,9 +12,11 @@ function Dashboard() {
         return <Navigate to="/login" />;
     }
 
+    console.log(user);
+
     return (
         <div>
-            <span>Hello {user.name} !</span>
+            <span>Hello !</span>
             <DashboardTabs />
             {list ? <Outlet /> : <AllUserAnime />}
         </div>

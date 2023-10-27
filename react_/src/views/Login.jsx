@@ -27,7 +27,7 @@ function Login() {
         axiosClient
             .post("/login", payload)
             .then((response) => {
-                setUser(response.data.user);
+                setUser(response.data.user.name);
                 setToken(response.data.token);
             })
             .catch((err) => {

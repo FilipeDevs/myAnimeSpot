@@ -11,7 +11,7 @@ function Navbar({ token }) {
     const onLogout = (event) => {
         event.preventDefault();
         axiosCLient.post("logout").then(() => {
-            setUser({});
+            setUser(null);
             setToken(null);
         });
     };

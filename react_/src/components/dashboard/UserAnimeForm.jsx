@@ -23,7 +23,7 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
         const selectedList = document.getElementById("selectList").value;
         const payload = {
             ...anime,
-            id: anime.id,
+            id: anime.anime_id,
             progress: inputProgress,
             list: selectedList,
         };
@@ -32,7 +32,7 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
     };
 
     const handleDelete = () => {
-        destroyAnime.mutate(anime.id);
+        destroyAnime.mutate(anime.anime_id);
         onClose();
     };
 

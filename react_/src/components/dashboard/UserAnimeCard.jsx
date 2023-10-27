@@ -9,7 +9,7 @@ function UserAnimeCard({ anime, queryKey }) {
     const updateAnimeEntry = (list, progress) => {
         const payload = {
             ...anime,
-            id: anime.id,
+            id: anime.anime_id,
             progress: progress,
             list: list,
         };

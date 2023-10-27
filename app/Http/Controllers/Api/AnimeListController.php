@@ -30,7 +30,7 @@ class AnimeListController extends Controller
     public function indexAnime(Request $request, $id)
     {
         $user_id = $request->user()->id;
-        $anime = UserAnime::where('user_id', $user_id)->where("id", $id)->get();
+        $anime = UserAnime::where('user_id', $user_id)->where("anime_id", $id)->get();
         return response()->json($anime);
     }
 
@@ -49,7 +49,7 @@ class AnimeListController extends Controller
     {
         // Create a new UserAnime record
         UserAnime::create([
-            'id' => $request['id'],
+            'anime_id' => $request['id'],
             'title' => $request['title'],
             'format' => $request['format'],
             'episodes' => $request['episodes'],
@@ -65,14 +65,16 @@ class AnimeListController extends Controller
     // Update the list of an anime
     public function update(Request $request, $id)
     {
-        UserAnime::where("id", $id)->update([
+        $user_id = $request->user()->id;
+
+        UserAnime::where('user_id', $user_id)->where("anime_id", $id)->update([
             "list" => $request["list"],
             "progress" => $request["progress"],
         ]);
 
         // Check if progress is equal to number of episoded of the anime, if it is the user has completed it.
-        if (UserAnime::where("id", $id)->value("progress") == UserAnime::where("id", $id)->value("episodes")) {
-            UserAnime::where("id", $id)->update([
+        if (UserAnime::where('user_id', $user_id)->where("anime_id", $id)->value("progress") == UserAnime::where('user_id', $user_id)->where("anime_id", $id)->value("episodes")) {
+            UserAnime::where('user_id', $user_id)->where("anime_id", $id)->update([
                 "list" => "completed",
             ]);
         }
@@ -84,7 +86,10 @@ class AnimeListController extends Controller
     public function destroy(Request $request, $id)
     {
         $user_id = $request->user()->id;
-        UserAnime::where('user_id', $user_id)->where('id', $id)->delete();
+        UserAnime::where('user_id', $user_id)->where("anime_id", $id)->delete();
+
+        Log::debug($id);
+        Log::debug("User :", $user_id);
 
         return response("Anime deleted  !", 201);
     }

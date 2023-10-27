@@ -12,9 +12,10 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('user_animes', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('title');
             $table->string('format');
+            $table->unsignedBigInteger('anime_id');
             $table->foreignId('user_id');
             $table->enum('list', ['watching', 'planned', 'dropped', 'completed'])->default('watching');
             $table->integer('progress')->default(0);
@@ -22,6 +23,8 @@ return new class extends Migration {
             $table->integer('ep_duration')->nullable(true);
             $table->string('image_link'); // Add the image_link column
             $table->timestamps();
+
+            $table->unique(['user_id', 'anime_id']);
         });
     }
 

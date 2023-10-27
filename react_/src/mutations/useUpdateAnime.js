@@ -27,7 +27,7 @@ function useUpdateAnime(queryKey) {
                 if (Array.isArray(oldData)) {
                     // Handle array data
                     return oldData.map((anime_) => {
-                        if (anime_.id === updatedAnimeData.id) {
+                        if (anime_.anime_id === updatedAnimeData.anime_id) {
                             return updatedAnimeData;
                         }
                         return anime_;
@@ -37,7 +37,7 @@ function useUpdateAnime(queryKey) {
                     const newData = { ...oldData };
                     Object.keys(newData).forEach((list) => {
                         newData[list] = newData[list].map((anime_) => {
-                            if (anime_.id === updatedAnimeData.id) {
+                            if (anime_.anime_id === updatedAnimeData.anime_id) {
                                 return updatedAnimeData;
                             }
                             return anime_;
