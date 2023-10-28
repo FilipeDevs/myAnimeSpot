@@ -1,12 +1,13 @@
 import { useQuery } from "@apollo/client";
-import apolloClient from "../apollo-client";
-import searchAnimeQuery from "../queries/searchqlQueries";
-import AnimeSearchCard from "../components/anime_search/AnimeSearchCard";
+import apolloClient from "../../apollo-client";
+import searchAnimeQuery from "../../queries/searchqlQueries";
+import AnimeSearchCard from "./AnimeSearchCard";
 import { useLocation } from "react-router-dom";
-import Loading from "../components/Loading";
-import NothingFound from "../components/NothingFound";
+import Loading from "../Loading";
+import NothingFound from "../NothingFound";
+import Error from "../../views/Error";
 
-function AnimeSearch() {
+function AnimeSearchGrid() {
     const location = useLocation();
 
     const queryParams = {};
@@ -26,6 +27,8 @@ function AnimeSearch() {
     });
 
     if (loading) return <Loading />;
+
+    if (error) return <Error />;
 
     return (
         <div className="mb-10">
@@ -55,4 +58,4 @@ function AnimeSearch() {
     );
 }
 
-export default AnimeSearch;
+export default AnimeSearchGrid;

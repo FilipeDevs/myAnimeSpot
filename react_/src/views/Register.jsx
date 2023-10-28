@@ -24,7 +24,8 @@ function Register() {
             name: nameRef.current.value,
             email: emailRef.current.value,
             password: passwordRef.current.value,
-            password_confirmation: passwordConfirmationRef.current.value, // no camel case so Laravel can search for confirm password
+            // no camel case so Laravel can search for confirm password
+            password_confirmation: passwordConfirmationRef.current.value,
         };
 
         axiosClient

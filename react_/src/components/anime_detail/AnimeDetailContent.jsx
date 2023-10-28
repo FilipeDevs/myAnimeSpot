@@ -1,5 +1,3 @@
-import React from "react";
-
 function AnimeDetailCharacters({ characters }) {
     return (
         <div className="grid place-items-center my-10">

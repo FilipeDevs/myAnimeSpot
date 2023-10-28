@@ -5,10 +5,9 @@ import NotFound from "./views/NotFound";
 import DefaultLayout from "./components/DefaultLayout";
 import Dashboard from "./views/Dashboard";
 import Home from "./views/Home";
-import FilterAndSearch from "./components/anime_search/FilterAndSearch";
 import DetailAnime from "./views/DetailAnime";
-import AnimeDetailContent from "./components/anime_detail/AnimeDetailContent";
 import UserListAnime from "./components/dashboard/UserListAnime";
+import SearchnAnime from "./views/SearchAnime";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +38,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/search",
-                element: <FilterAndSearch />,
+                element: <SearchnAnime />,
             },
             {
                 path: "/animeDetail/:id",
