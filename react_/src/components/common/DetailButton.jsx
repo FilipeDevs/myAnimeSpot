@@ -1,9 +1,9 @@
 import useStoreAnime from "../../mutations/useStoreAnime";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import Loading from "../Loading";
 import axiosClient from "../../axios-client";
 import UserAnimeForm from "../dashboard/UserAnimeForm";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function DetailButton({ anime }) {
     const queryKey = `user_anime_index${anime.id}`;
@@ -39,7 +39,7 @@ function DetailButton({ anime }) {
     const animeExists = !data.length > 0;
 
     return (
-        <div>
+        <div className="w-62">
             {" "}
             {animeExists ? (
                 <button

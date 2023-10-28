@@ -44,12 +44,6 @@ const router = createBrowserRouter([
             {
                 path: "/animeDetail/:id",
                 element: <DetailAnime />,
-                children: [
-                    {
-                        path: "/animeDetail/:id/:content",
-                        element: <AnimeDetailContent />,
-                    },
-                ],
             },
         ],
     },
