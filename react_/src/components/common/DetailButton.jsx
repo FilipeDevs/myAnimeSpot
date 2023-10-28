@@ -6,20 +6,14 @@ import UserAnimeForm from "../dashboard/UserAnimeForm";
 import { useState, useEffect } from "react";
 
 function DetailButton({ anime }) {
-    const queryKey = "user_anime_index";
+    const queryKey = `user_anime_index${anime.id}`;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { storeAnime } = useStoreAnime(queryKey);
-    const queryClient = useQueryClient(); // Access the queryClient
 
     const getUserAnime = async () => {
         const response = await axiosClient.get(`/anime/index/${anime.id}`);
         return response.data;
     };
-
-    // Use useEffect to prefetch the data when the component mounts
-    useEffect(() => {
-        queryClient.prefetchQuery(queryKey, getUserAnime);
-    }, [queryKey]);
 
     const { data, isLoading, isError } = useQuery(queryKey, getUserAnime);
 

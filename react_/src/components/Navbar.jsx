@@ -20,19 +20,19 @@ function Navbar({ token }) {
         <div className="py-8">
             <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-400 dark:border-gray-600">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <a href="/" className="flex items-center">
-                        <img
-                            src="/assets/logo_.png"
-                            className="h-8 mr-2"
-                            alt="Logo"
-                        ></img>
+                    <div className="">
                         <Link
                             to={"/"}
-                            className="self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:text-blue-700 "
+                            className="flex self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:text-blue-700 "
                         >
-                            Home
+                            <img
+                                src="/assets/logo_.png"
+                                className="h-8 mr-2"
+                                alt="Logo"
+                            ></img>
+                            <span className="mt-1 hidden md:block">Home</span>
                         </Link>
-                    </a>
+                    </div>
                     <div className="flex md:order-2 space-x-4">
                         {!token ? (
                             <>
