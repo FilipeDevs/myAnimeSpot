@@ -3,6 +3,7 @@ import UserAnimeGrid from "./UserAnimeGrid";
 import Loading from "../Loading";
 import { useQuery } from "react-query";
 import NothingFound from "../NothingFound";
+import ErrorComponent from "../../views/ErrorComponent";
 
 const getUserAnime = async () => {
     const response = await axiosClient.get(`/anime`);
@@ -14,6 +15,8 @@ function AllUserAnime() {
     const { data, isLoading, isError } = useQuery(queryKey, getUserAnime);
 
     if (isLoading) return <Loading />;
+
+    if (isError) return <ErrorComponent />;
 
     return (
         <div className="">

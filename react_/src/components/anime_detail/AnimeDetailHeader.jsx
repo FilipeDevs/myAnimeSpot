@@ -1,5 +1,5 @@
 import { useStateContext } from "../../contexts/ContextProvider";
-import DetailButton from "../common/DetailButton";
+import DetailButton from "./DetailButton";
 import { useState, useEffect } from "react";
 
 function AnimeDetailHeader({ anime }) {

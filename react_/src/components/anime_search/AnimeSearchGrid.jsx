@@ -6,7 +6,7 @@ import AnimeSearchCard from "./AnimeSearchCard";
 import { useLocation } from "react-router-dom";
 import Loading from "../Loading";
 import NothingFound from "../NothingFound";
-import Error from "../../views/Error";
+import ErrorComponent from "../../views/ErrorComponent";
 
 function AnimeSearchGrid() {
     const location = useLocation();
@@ -63,7 +63,7 @@ function AnimeSearchGrid() {
     );
 
     if (isLoading) return <Loading />;
-    if (error) return <Error />;
+    if (error) return <ErrorComponent />;
 
     return (
         <div className="mb-10">

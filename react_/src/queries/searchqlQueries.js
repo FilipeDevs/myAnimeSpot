@@ -39,6 +39,8 @@ const searchAnimeQuery = gql`
                     nodes {
                         name {
                             full
+                            first
+                            last
                         }
                         image {
                             large

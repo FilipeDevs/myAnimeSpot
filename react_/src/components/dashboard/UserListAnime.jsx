@@ -3,6 +3,7 @@ import axiosClient from "../../axios-client";
 import UserAnimeGrid from "./UserAnimeGrid";
 import Loading from "../Loading";
 import { useQuery } from "react-query";
+import ErrorComponent from "../../views/ErrorComponent";
 
 function UserListAnime() {
     const { list } = useParams();
@@ -14,6 +15,8 @@ function UserListAnime() {
     const { data, isLoading, isError } = useQuery(queryKey, getUserAnimeList);
 
     if (isLoading) return <Loading />;
+
+    if (isError) return <ErrorComponent />;
 
     return (
         <div className="">

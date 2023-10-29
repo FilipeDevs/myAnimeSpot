@@ -1,10 +1,11 @@
 import { useQuery } from "@apollo/client";
-import apolloClient from "../apollo-client";
+import apolloClient from "../../apollo-client";
 import CardAnime from "./CardAnime";
 import { Link } from "react-router-dom";
 import queryString from "query-string";
-import Loading from "../components/Loading";
-import searchAnimeQuery from "../queries/searchqlQueries";
+import Loading from "../Loading";
+import searchAnimeQuery from "../../queries/searchqlQueries";
+import ErrorComponent from "../../views/ErrorComponent";
 
 function AnimeGrid({ name, searchProps }) {
     const { data, loading, error } = useQuery(searchAnimeQuery, {
@@ -12,7 +13,7 @@ function AnimeGrid({ name, searchProps }) {
         variables: { page: 1, perPage: 6, ...searchProps },
     });
 
-    if (error) return <p>Something went wrong !</p>;
+    if (error) return <ErrorComponent />;
 
     if (loading) return <Loading />;
 

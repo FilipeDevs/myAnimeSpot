@@ -1,5 +1,5 @@
 import homePageFilters from "../filtersData/homePageFilters";
-import AnimeGrid from "./AnimeGrid";
+import AnimeGrid from "../components/home/AnimeGrid";
 
 function Main() {
     return (

@@ -1,4 +1,4 @@
-function Error() {
+function ErrorComponent() {
     return (
         <div className="flex flex-col items-center justify-center m-10">
             <div className="bg-red-500 text-white p-6 rounded-lg shadow-lg">
@@ -12,4 +12,4 @@ function Error() {
     );
 }
 
-export default Error;
+export default ErrorComponent;

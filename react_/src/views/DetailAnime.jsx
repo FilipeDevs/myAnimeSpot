@@ -4,7 +4,7 @@ import apolloClient from "../apollo-client";
 import Loading from "../components/Loading";
 import searchAnimeQuery from "../queries/searchqlQueries";
 import { useQuery } from "@apollo/client";
-import Error from "./Error";
+import ErrorComponent from "./ErrorComponent";
 import AnimeDetailOverview from "../components/anime_detail/AnimeDetailOverview";
 import AnimeDetailCharacters from "../components/anime_detail/AnimeDetailContent";
 
@@ -16,9 +16,9 @@ function DetailAnime() {
         variables: { page: 1, perPage: 6, id: id },
     });
 
-    if (error) return <Error />;
-
     if (loading) return <Loading />;
+
+    if (error) return <ErrorComponent />;
 
     const anime = data.Page.media[0];
 
