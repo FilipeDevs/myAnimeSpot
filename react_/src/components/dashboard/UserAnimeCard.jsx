@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UserAnimeForm from "./UserAnimeForm";
 import useUpdateAnime from "../../mutations/useUpdateAnime";
+import { Link } from "react-router-dom";
 
 function UserAnimeCard({ anime, queryKey }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,7 +21,10 @@ function UserAnimeCard({ anime, queryKey }) {
         <div className="w-80 h-52 border rounded-lg shadow-lg hover:bg-gray-100 flex">
             <div className="flex">
                 <div className="w-1/2 relative flex">
-                    <a href="#" className="flex">
+                    <Link
+                        to={`/animeDetail/${anime.anime_id}`}
+                        className="flex"
+                    >
                         <div className="flex relative">
                             <img
                                 className="rounded-l-lg h-auto w-64"
@@ -28,7 +32,7 @@ function UserAnimeCard({ anime, queryKey }) {
                                 alt="userAnime"
                             />
                         </div>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="w-1/2 px-3 text-center">

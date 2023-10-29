@@ -8,11 +8,16 @@ import Home from "./views/Home";
 import DetailAnime from "./views/DetailAnime";
 import UserListAnime from "./components/dashboard/UserListAnime";
 import SearchnAnime from "./views/SearchAnime";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <DefaultLayout />,
+        element: (
+            <ErrorBoundary>
+                <DefaultLayout />
+            </ErrorBoundary>
+        ),
         children: [
             {
                 path: "/login",

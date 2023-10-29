@@ -12,15 +12,21 @@ function useStoreAnime(queryKey) {
     };
 
     const storeAnime = useMutation(storeAnimeRequest, {
-        onMutate: async () => {
-            await queryClient.cancelQueries(queryKey);
-            // Maybe add optimistic update here, so there is no delay to the edit button
+        onMutate: async (newData) => {
+            const oldData = queryClient.getQueryData(queryKey);
+            // Update the cache optimistically
+            queryClient.setQueryData(queryKey, (oldData) => {
+                return [...oldData, newData];
+            });
+
+            return { oldData };
         },
         onSuccess: (data) => {
             toast.success(data);
         },
         onError: (error, variables, context) => {
-            toast.success("Failed to add anime !");
+            queryClient.setQueryData(queryKey, context.oldData);
+            toast.error("Failed to add anime !");
         },
         onSettled: () => {
             queryClient.invalidateQueries(queryKey);
