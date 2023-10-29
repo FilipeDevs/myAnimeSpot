@@ -41,7 +41,7 @@ function AnimeSearchGrid() {
         isLoading,
         error,
     } = useInfiniteQuery(
-        "searchAnime",
+        ["searchAnime", queryParams],
         async ({ pageParam = 1 }) => {
             const response = await apolloClient.query({
                 query: searchAnimeQuery,

@@ -44,14 +44,14 @@ function DashboardTabs() {
                                 Dropped
                             </Link>
                         </li>
-                        <li className="mr-2">
+                        {/* <li className="mr-2">
                             <Link
                                 to={"/dashboard/stats"}
                                 className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                             >
                                 Statistics
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>

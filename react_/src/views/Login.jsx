@@ -2,6 +2,8 @@ import { Link, Navigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import { useRef, useState } from "react";
 import axiosClient from "../axios-client.js";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
     const { token } = useStateContext();
@@ -29,6 +31,7 @@ function Login() {
             .then((response) => {
                 setUser(response.data.user.name);
                 setToken(response.data.token);
+                toast.success(response.data.message);
             })
             .catch((err) => {
                 const response = err.response;
@@ -100,6 +103,7 @@ function Login() {
                         to="/register"
                         className="text-blue-500 hover:underline"
                     >
+                        {" "}
                         Register here
                     </Link>
                 </p>

@@ -4,7 +4,7 @@ import useUpdateAnime from "../../mutations/useUpdateAnime";
 
 function UserAnimeCard({ anime, queryKey }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { updateAnime } = useUpdateAnime(queryKey);
+    const { updateAnime } = useUpdateAnime(queryKey, false);
 
     const updateAnimeEntry = (list, progress) => {
         const payload = {
@@ -13,7 +13,7 @@ function UserAnimeCard({ anime, queryKey }) {
             progress: progress,
             list: list,
         };
-        updateAnime.mutate(payload);
+        updateAnime.mutate(payload, { isFormUpdate: true });
     };
 
     return (

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import useUpdateAnime from "../../mutations/useUpdateAnime";
 import useDestroyAnime from "../../mutations/useDestroyAnime";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function UserAnimeForm({ anime, onClose, queryKey }) {
     const [inputProgress, setInputProgress] = useState(anime.progress);
-    const { updateAnime } = useUpdateAnime(queryKey);
+    const { updateAnime } = useUpdateAnime(queryKey, true);
     const { destroyAnime } = useDestroyAnime(queryKey);
 
     const handleInputChange = (e) => {
@@ -27,7 +29,8 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
             progress: inputProgress,
             list: selectedList,
         };
-        updateAnime.mutate(payload);
+        updateAnime.mutate(payload, true);
+
         onClose();
     };
 

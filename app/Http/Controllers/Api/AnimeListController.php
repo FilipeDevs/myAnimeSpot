@@ -58,7 +58,7 @@ class AnimeListController extends Controller
             'image_link' => $request['image_link'],
         ]);
 
-        return response("Anime added", 201);
+        return response("Anime added sucessfuly !", 201);
     }
 
 
@@ -79,7 +79,7 @@ class AnimeListController extends Controller
             ]);
         }
 
-        return response("Anime updated !", 201);
+        return response("Anime updated sucessfuly !", 201);
     }
 
     // Delete existing anime entry
@@ -88,9 +88,6 @@ class AnimeListController extends Controller
         $user_id = $request->user()->id;
         UserAnime::where('user_id', $user_id)->where("anime_id", $id)->delete();
 
-        Log::debug($id);
-        Log::debug("User :", $user_id);
-
-        return response("Anime deleted  !", 201);
+        return response("Anime deleted sucessfuly!", 201);
     }
 }

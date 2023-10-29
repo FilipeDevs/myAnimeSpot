@@ -1,7 +1,11 @@
 function formatInfo(info) {
-    info = info.replace(/_/g, " ");
-    info = info.charAt(0).toUpperCase() + info.slice(1).toLowerCase();
-    return info;
+    if (info) {
+        info = info.replace(/_/g, " ");
+        info = info.charAt(0).toUpperCase() + info.slice(1).toLowerCase();
+        return info;
+    }
+
+    return null;
 }
 
 function AnimeDetailOverview({ anime }) {
@@ -48,8 +52,8 @@ function AnimeDetailOverview({ anime }) {
                             Season
                         </dd>
                         <dt className="mb-2 text-lg font-bold">
-                            {formattedSeason && formattedSeason}{" "}
-                            {anime.seasonYear && anime.seasonYear}
+                            {formattedSeason ? formattedSeason : " - "}{" "}
+                            {anime.seasonYear ? anime.seasonYear : " - "}
                         </dt>
                     </div>
                     <div className="flex flex-col items-center justify-center">

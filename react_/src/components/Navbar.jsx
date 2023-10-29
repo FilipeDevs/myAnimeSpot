@@ -4,15 +4,18 @@ import axiosCLient from "../axios-client";
 import { Collapse } from "flowbite";
 import queryString from "query-string";
 import homePageFilters from "../filtersData/homePageFilters";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Navbar({ token }) {
-    const { setUser, setToken, user } = useStateContext(); // Refresh layout when token is updated
+    const { setUser, setToken } = useStateContext(); // Refresh layout when token is updated
 
     const onLogout = (event) => {
         event.preventDefault();
-        axiosCLient.post("logout").then(() => {
+        axiosCLient.post("/logout").then((response) => {
             setUser(null);
             setToken(null);
+            toast.success(response.data.message);
         });
     };
 

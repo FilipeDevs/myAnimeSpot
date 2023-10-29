@@ -35,7 +35,7 @@ const searchAnimeQuery = gql`
                     day
                 }
                 duration
-                characters(page: 1, perPage: 10) {
+                characters(page: 1, perPage: 12) {
                     nodes {
                         name {
                             full
