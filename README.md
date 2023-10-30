@@ -65,13 +65,17 @@ The project is powered by [AniList API](https://anilist.gitbook.io/anilist-apiv2
 
 ## Demo Images
 <div style="display: flex;">
+    <h4>Light Mode</h4>
     <img src="./images/home.png" >
     <img src="./images/browse.png" >
     <img src="./images/anime_detail.png" >
     <img src="./images/dashboard.png">
+    <h4>Dark Mode</h4>
     <img src="./images/home_dark.png" >
     <img src="./images/browse_dark.png" >
     <img src="./images/anime_detail_dark.png" >
+     <img src="./images/dashboard_dark.png">
+    <h4>Mobile</h4>
     <img src="./images/dashboard_mobile.png">
     <img src="./images/anime_detail_mobile.png">
 </div>
