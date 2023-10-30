@@ -3,8 +3,8 @@ import NothingFound from "../NothingFound";
 function AnimeDetailCharacters({ characters }) {
     return (
         <div className="grid place-items-center my-10">
-            <div className="bg-white rounded shadow-lg p-5 max-2xl:">
-                <h3 className="text-center text-2xl font-bold px-5 py-1 mb-3">
+            <div className="bg-white rounded shadow-lg p-5 max-2xl dark:bg-gray-900">
+                <h3 className="text-center text-2xl font-bold px-5 py-1 mb-3 dark:text-white">
                     Characters
                 </h3>
                 {characters.length == 0 ? (
@@ -15,7 +15,7 @@ function AnimeDetailCharacters({ characters }) {
                             return (
                                 <div
                                     key={index}
-                                    className="w-52 rounded overflow-hidden shadow-lg"
+                                    className="w-40 rounded overflow-hidden shadow-lg dark:bg-gray-800"
                                 >
                                     <img
                                         src={character.image.large}
@@ -23,7 +23,7 @@ function AnimeDetailCharacters({ characters }) {
                                         className="w-72"
                                     />
                                     <div className="px-5 py-3">
-                                        <div className="font-medium text-lg mb-1">
+                                        <div className="font-medium text-lg mb-1 dark:text-white">
                                             {character.name.full}
                                         </div>
                                     </div>

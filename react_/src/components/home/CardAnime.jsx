@@ -5,11 +5,11 @@ function CardAnime({ anime }) {
         <div className="flex flex-col items-center text-center">
             <Link to={`/animeDetail/${anime.id}`}>
                 <img
-                    className="h-64 w-48 object-cover rounded-lg" // Adjust the width and height as needed
+                    className="h-64 w-48 object-cover rounded"
                     src={anime.coverImage.large}
                     alt="animeCard"
                 />
-                <p className="truncate max-w-[12rem] mt-2 sm:whitespace-truncate">
+                <p className="truncate max-w-[12rem] mt-2 sm:whitespace-truncate dark:text-white">
                     {anime.title.english
                         ? anime.title.english
                         : anime.title.romaji}

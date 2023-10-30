@@ -18,7 +18,7 @@ function UserAnimeCard({ anime, queryKey }) {
     };
 
     return (
-        <div className="w-80 h-52 border rounded-lg shadow-lg hover:bg-gray-100 flex">
+        <div className="w-80 h-52 rounded-lg shadow-lg hover:bg-gray-100 flex dark:bg-gray-800">
             <div className="flex">
                 <div className="w-1/2 relative flex">
                     <Link
@@ -37,15 +37,15 @@ function UserAnimeCard({ anime, queryKey }) {
 
                 <div className="w-1/2 px-3 text-center">
                     <div className="h-24">
-                        <h5 className="mt-1 text-sm font-medium text-gray-800">
+                        <h5 className="mt-1 text-sm font-medium text-gray-800 dark:text-white">
                             {anime.title}
                         </h5>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
                             {anime.format}
                         </span>
                     </div>
 
-                    <div className="h-16 mb-0 text-blue-500">
+                    <div className="h-16 mb-0 text-blue-500 dark:text-blue-300">
                         <span>
                             {anime.progress}/
                             {anime.episodes ? anime.episodes : " -"}{" "}
@@ -57,7 +57,7 @@ function UserAnimeCard({ anime, queryKey }) {
                                             anime.progress + 1
                                         )
                                     }
-                                    className="text-xl text-blue-500"
+                                    className="text-xl text-blue-500 dark:text-blue-300"
                                 >
                                     +
                                 </button>
@@ -66,7 +66,7 @@ function UserAnimeCard({ anime, queryKey }) {
                     </div>
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="text-sm text-blue-500 underline"
+                        className="text-sm text-blue-500 underline dark:text-blue-300"
                     >
                         Edit
                     </button>

@@ -20,7 +20,7 @@ function AnimeGrid({ name, searchProps }) {
     return (
         <div className="flex flex-col items-center justify-center py-6">
             <div className="text-center py-5">
-                <h1 className="text-2xl font-bold">{name}</h1>
+                <h1 className="text-2xl font-bold dark:text-white">{name}</h1>
                 <Link
                     to={{
                         pathname: "/search",
@@ -31,7 +31,7 @@ function AnimeGrid({ name, searchProps }) {
                     View all
                 </Link>
             </div>
-            <div className="grid grid-cols-1 xl:grid-cols-6 gap-4 md:grid-cols-3 gap-4 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 xl:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 ">
                 {data.Page.media.map((anime) => {
                     return <CardAnime key={anime.id} anime={anime} />;
                 })}

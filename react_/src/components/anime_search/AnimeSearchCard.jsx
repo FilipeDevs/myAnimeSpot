@@ -10,7 +10,7 @@ function AnimeSearchCard({
     seasonYear,
 }) {
     return (
-        <div className="w-96 border rounded-lg shadow-lg hover:bg-gray-100 flex">
+        <div className="flex w-96 rounded-lg shadow-lg">
             <div className="flex">
                 <div className="w-1/2 relative flex">
                     <Link className="flex" to={`/animeDetail/${id}`}>
@@ -29,8 +29,8 @@ function AnimeSearchCard({
                     </Link>
                 </div>
 
-                <div className="w-1/2 px-3">
-                    <h5 className="my-1 text-base text-gray-800">
+                <div className="w-1/2 px-3 dark:text-white dark:bg-gray-900">
+                    <h5 className="my-1 text-base text-gray-800 dark:text-white">
                         {season} - {seasonYear}
                     </h5>
                     <div className="h-48 mb-5 overflow-y-auto scrollDiv">

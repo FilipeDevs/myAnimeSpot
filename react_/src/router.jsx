@@ -49,11 +49,11 @@ const router = createBrowserRouter([
                 path: "/animeDetail/:id",
                 element: <DetailAnime />,
             },
+            {
+                path: "*",
+                element: <NotFound />,
+            },
         ],
-    },
-    {
-        path: "*",
-        element: <NotFound />,
     },
 ]);
 

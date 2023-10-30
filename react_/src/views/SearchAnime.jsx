@@ -6,7 +6,9 @@ function SearchnAnime() {
     return (
         <>
             <div className="text-center py-10">
-                <h1 className="text-2xl font-bold">Browse Anime</h1>
+                <h1 className="text-2xl font-bold dark:text-white">
+                    Browse Anime
+                </h1>
             </div>
             <SearchBar />
             <FiltersBar />

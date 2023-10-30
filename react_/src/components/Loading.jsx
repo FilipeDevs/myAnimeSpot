@@ -17,7 +17,7 @@ function Loading() {
                     fill="currentFill"
                 />
             </svg>
-            <span>Loading...</span>
+            <span className="text-black dark:text-white">Loading...</span>
         </div>
     );
 }

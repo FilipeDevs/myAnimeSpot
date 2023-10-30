@@ -42,7 +42,7 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
                 className="absolute inset-0 bg-black opacity-50"
                 onClick={onClose}
             ></div>
-            <div className="bg-white w-96 rounded-lg shadow-lg z-50">
+            <div className="bg-white w-96 rounded-lg shadow-lg z-50 dark:bg-gray-900">
                 <div className="modal-content p-6">
                     <div className="flex items-center">
                         <img
@@ -51,14 +51,14 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
                             alt={anime.title}
                         />
                         <div>
-                            <h5 className="text-sm font-semibold">
+                            <h5 className="text-sm font-semibold dark:text-white pb-1 text-center">
                                 {anime.title}
                             </h5>
                             <form>
                                 <div className="mb-4 text-left">
                                     <label
                                         htmlFor="list"
-                                        className="text-sm font-medium text-gray-600"
+                                        className="text-sm font-medium text-gray-600 dark:text-white"
                                     >
                                         List
                                     </label>
@@ -81,7 +81,7 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
                                 <div className="mb-4 text-left">
                                     <label
                                         htmlFor="progress"
-                                        className="text-sm font-medium text-gray-600"
+                                        className="text-sm font-medium text-gray-600 dark:text-white"
                                     >
                                         Progress
                                     </label>
@@ -100,7 +100,7 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
                                             value={inputProgress}
                                             onChange={handleInputChange}
                                         />
-                                        <span className="ml-1 mt-1 text-lg">
+                                        <span className="ml-1 mt-1 text-lg dark:text-white">
                                             /{" "}
                                             {anime.episodes
                                                 ? anime.episodes

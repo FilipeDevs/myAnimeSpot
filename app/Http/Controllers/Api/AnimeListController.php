@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Models\UserAnime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Log;
 
 class AnimeListController extends Controller
 {
@@ -72,8 +71,11 @@ class AnimeListController extends Controller
             "progress" => $request["progress"],
         ]);
 
+        $episodes = UserAnime::where('user_id', $user_id)->where("anime_id", $id)->value("episodes");
+        $progress = UserAnime::where('user_id', $user_id)->where("anime_id", $id)->value("progress");
+
         // Check if progress is equal to number of episoded of the anime, if it is the user has completed it.
-        if (UserAnime::where('user_id', $user_id)->where("anime_id", $id)->value("progress") == UserAnime::where('user_id', $user_id)->where("anime_id", $id)->value("episodes")) {
+        if ($progress == $episodes && $episodes != null) {
             UserAnime::where('user_id', $user_id)->where("anime_id", $id)->update([
                 "list" => "completed",
             ]);

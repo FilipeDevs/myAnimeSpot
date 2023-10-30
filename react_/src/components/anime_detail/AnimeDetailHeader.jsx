@@ -16,7 +16,7 @@ function AnimeDetailHeader({ anime }) {
 
     return (
         <div className="grid place-items-center mt-10">
-            <div className="bg-white rounded shadow-lg">
+            <div className="bg-white rounded shadow-lg dark:bg-gray-900">
                 <div className="md:flex px-4 leading-none max-w-4xl">
                     <div className="flex-none my-5 px-5 max-w-xs">
                         <img
@@ -28,11 +28,11 @@ function AnimeDetailHeader({ anime }) {
                     </div>
 
                     <div className="flex-col">
-                        <h1 className="pt-4 text-2xl font-bold">
+                        <h1 className="pt-4 text-2xl font-bold dark:text-white">
                             {anime.title.english}
                         </h1>
                         <p
-                            className="md:block my-4 text-sm text-left"
+                            className="md:block my-4 text-sm text-left dark:text-white"
                             dangerouslySetInnerHTML={{
                                 __html: showFullDescription
                                     ? anime.description

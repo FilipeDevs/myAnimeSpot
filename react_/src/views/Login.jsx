@@ -48,7 +48,7 @@ function Login() {
             });
     };
     return (
-        <div className="max-w-md mx-auto m-10 p-6 bg-white rounded-md shadow-md">
+        <div className="max-w-md mx-auto m-10 p-6 bg-white rounded-md shadow-md dark:bg-gray-900">
             <h1 className="block mb-5 text-lg font-medium text-gray-900 dark:text-white">
                 Log in
             </h1>
@@ -97,7 +97,7 @@ function Login() {
                 >
                     Log in
                 </button>
-                <p className="mt-4">
+                <p className="mt-4 dark:text-white">
                     Don't have an account yet ?
                     <Link
                         to="/register"
