@@ -63,4 +63,17 @@ The project is powered by [AniList API](https://anilist.gitbook.io/anilist-apiv2
 10. Run `npm install`
 11. Run `npm run dev` to start vite server for React
 
-## Live Demo
+## Demo Images
+<div style="display: flex;">
+    <img src="./images/home.png" >
+    <img src="./images/browse.png" >
+    <img src="./images/anime_detail.png" >
+    <img src="./images/dashboard.png">
+    <img src="./images/home_dark.png" >
+    <img src="./images/browse_dark.png" >
+    <img src="./images/anime_detail_dark.png" >
+    <img src="./images/dashboard_mobile.png">
+    <img src="./images/anime_detail_mobile.png">
+</div>
+
+
