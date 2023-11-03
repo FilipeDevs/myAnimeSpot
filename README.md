@@ -49,6 +49,9 @@ The project is powered by [AniList API](https://anilist.gitbook.io/anilist-apiv2
 
 ### And more...
 
+### Todo
+* Add a statistics system
+
 ## Usage
 
 1. Clone the project
