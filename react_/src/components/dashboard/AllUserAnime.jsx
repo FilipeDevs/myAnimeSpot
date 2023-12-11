@@ -1,4 +1,4 @@
-import axiosClient from "../../axios-client";
+import axiosClient from "../../clients/axios-client";
 import UserAnimeGrid from "./UserAnimeGrid";
 import Loading from "../Loading";
 import { useQuery } from "react-query";

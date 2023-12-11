@@ -1,9 +1,10 @@
 import useStoreAnime from "../../mutations/useStoreAnime";
 import { useQuery } from "react-query";
 import Loading from "../Loading";
-import axiosClient from "../../axios-client";
+import axiosClient from "../../clients/axios-client";
 import UserAnimeForm from "../dashboard/UserAnimeForm";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 function DetailButton({ anime }) {
     const queryKey = `user_anime_index${anime.id}`;
@@ -30,7 +31,10 @@ function DetailButton({ anime }) {
             image_link: anime.coverImage.large,
         };
 
-        storeAnime.mutate(payload);
+        storeAnime.mutate(payload, {
+            onSuccess: () => toast.success("New anime added !"),
+            onError: () => toast.error("Error adding anime"),
+        });
     };
 
     if (isLoading) return <Loading />;

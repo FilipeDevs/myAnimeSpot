@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import apolloClient from "../../apollo-client";
+import apolloClient from "../../clients/apollo-client";
 import CardAnime from "./CardAnime";
 import { Link } from "react-router-dom";
 import queryString from "query-string";

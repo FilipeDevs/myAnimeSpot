@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import AnimeDetailHeader from "../components/anime_detail/AnimeDetailHeader";
-import apolloClient from "../apollo-client";
+import apolloClient from "../clients/apollo-client";
 import Loading from "../components/Loading";
 import searchAnimeQuery from "../queries/searchqlQueries";
 import { useQuery } from "@apollo/client";

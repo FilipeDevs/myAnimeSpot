@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
-import axiosCLient from "../axios-client";
+import axiosClient from "../clients/axios-client";
 import { Collapse } from "flowbite";
 import queryString from "query-string";
 import homePageFilters from "../filtersData/homePageFilters";
@@ -13,7 +13,7 @@ function Navbar({ token, toggleDarkMode }) {
 
     const onLogout = (event) => {
         event.preventDefault();
-        axiosCLient.post("/logout").then((response) => {
+        axiosClient.post("/logout").then((response) => {
             setUser(null);
             setToken(null);
             toast.success(response.data.message);

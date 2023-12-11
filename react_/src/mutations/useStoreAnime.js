@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import axiosClient from "../axios-client";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import axiosClient from "../clients/axios-client";
 
 function useStoreAnime(queryKey) {
     const queryClient = useQueryClient();
@@ -21,12 +19,8 @@ function useStoreAnime(queryKey) {
 
             return { oldData };
         },
-        onSuccess: (data) => {
-            toast.success(data);
-        },
         onError: (error, variables, context) => {
             queryClient.setQueryData(queryKey, context.oldData);
-            toast.error("Failed to add anime !");
         },
         onSettled: () => {
             queryClient.invalidateQueries(queryKey);

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useInfiniteQuery, useQueryClient } from "react-query";
-import apolloClient from "../../apollo-client";
+import apolloClient from "../../clients/apollo-client";
 import searchAnimeQuery from "../../queries/searchqlQueries";
 import AnimeSearchCard from "./AnimeSearchCard";
 import { useLocation } from "react-router-dom";

@@ -1,7 +1,7 @@
 import { Link, Navigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import { useRef, useState } from "react";
-import axiosClient from "../axios-client.js";
+import axiosClient from "../clients/axios-client";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

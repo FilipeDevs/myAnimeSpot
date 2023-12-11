@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useUpdateAnime from "../../mutations/useUpdateAnime";
 import useDestroyAnime from "../../mutations/useDestroyAnime";
+import { toast } from "react-toastify";
 
 function UserAnimeForm({ anime, onClose, queryKey }) {
     const [inputProgress, setInputProgress] = useState(anime.progress);
@@ -27,12 +28,29 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
             progress: inputProgress,
             list: selectedList,
         };
-        updateAnime.mutate(payload, true);
-        onClose();
+        updateAnime.mutate(payload, {
+            onSuccess: () => toast.success("Anime updated successfully"),
+            onError: () =>
+                toast.error(
+                    "Something went wrong when updating the anime entry"
+                ),
+            onSettled: () => {
+                onClose();
+            },
+        });
     };
 
     const handleDelete = () => {
-        destroyAnime.mutate(anime.anime_id);
+        destroyAnime.mutate(anime.anime_id, {
+            onSuccess: () => {
+                toast.success("Anime deleted successfully");
+            },
+            onError: () => {
+                toast.error(
+                    "Something went wrong when deleting the anime entry"
+                );
+            },
+        });
         onClose();
     };
 

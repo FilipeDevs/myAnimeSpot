@@ -1,9 +1,8 @@
 import { useMutation, useQueryClient } from "react-query";
-import axiosClient from "../axios-client";
-import { toast } from "react-toastify";
+import axiosClient from "../clients/axios-client";
 import "react-toastify/dist/ReactToastify.css";
 
-function useUpdateAnime(queryKey, isFormUpdate) {
+function useUpdateAnime(queryKey) {
     const queryClient = useQueryClient();
 
     const updateAnimeRequest = async (payload) => {
@@ -50,16 +49,10 @@ function useUpdateAnime(queryKey, isFormUpdate) {
                 return oldData;
             });
 
-            return { previousAnimeData, isFormUpdate };
-        },
-        onSuccess: (data) => {
-            if (isFormUpdate) {
-                toast.success(data);
-            }
+            return { previousAnimeData };
         },
         onError: (error, variables, context) => {
             queryClient.setQueryData(queryKey, context.previousAnimeData);
-            toast.error("Failed to update !");
         },
         onSettled: () => {
             queryClient.invalidateQueries(queryKey);
