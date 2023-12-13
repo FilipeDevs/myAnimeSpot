@@ -1,58 +1,38 @@
-# ANIME WEB APP
 
-This project is a simplified web application inspired by anime webistes like [MyAnimeList](https://myanimelist.net/) and [Anilist](https://anilist.co/search/anime), offering features to track and explore anime titles.
+# MyAnimeSpot
 
-The project is powered by [AniList API](https://anilist.gitbook.io/anilist-apiv2-docs/)
+MyAnimeSpot is a minimalist web application inspired by anime platforms like [MyAnimeList](https://myanimelist.net/) and [Anilist](https://anilist.co/search/anime). It provides users with a straightforward way to track and explore anime titles, powered by the GraphQL  [AniList API](https://anilist.gitbook.io/anilist-apiv2-docs/).
 
-## Technologies
 
-### Frameworks
-* React 
-* Laravel 
+## Tech Stack
 
-### Libraries
-* TailwindCSS
-* Flowbite
-* Apollo Client
-* Axios
-* React Query
-* React Router
-* React Toastify
+**Client:** React, ReactQuery, ApolloClient, TailwindCSS, Flowbite, Toastify 
+
+**Server:** Laravel
+
+**DB:** MySQL
+
 
 ## Features
 
-### Authentication System
+- User authentication
+- Anime list management
+    - Personalized user dashboard for managing anime entries, updating progress, and changing status.
+- Browse capabilities
+    - Filter options for refining searches based on genre, season, release year, and sorting by popularity or trending.
+    - Dynamic search bar for on-the-fly refinement of searches.
 
-* Register/Login/Log out.
-* Error feedback messages.
+- Responsive design
+- Dark mode toggle
+- Integrated toasts for feedback.
+- Optimistic Updates:
+    - Utilizes ReactQuery for optimistic updates to provide a smoother user experience by updating the UI optimistically before receiving confirmation from the server.
 
-### List Management
 
-* Users have access to a personal Dashboard where they can manage their added anime entries (update progress, status etc...).
+## Screenshots
 
-### Browse Page
 
-* Dynamic search bar for discovery of anime titles.
-* Filter options for refining search results based on criteria such as genre, season, release year and sort results by popularity or trending.
-
-### Responsive Design
-
-* Fully responsive and mobile-friendly.
-
-### Toasts
-
-* Flash messages to provide users with immediate feedback.
-
-### Dark Mode Toggle
-
-* Users can switch between light and dark themes for the interface
-
-### And more...
-
-### Todo
-* Add a statistics system
-
-## Usage
+## Usage (Local)
 
 1. Clone the project
 2. Copy `.env.example` into `.env` and configure database credentials
@@ -61,26 +41,10 @@ The project is powered by [AniList API](https://anilist.gitbook.io/anilist-apiv2
 5. Set the encryption key by executing `php artisan key:generate --ansi`
 6. Run migrations `php artisan migrate`
 7. Start local server by executing `php artisan serve`
-8. Open new terminal and navigate to the `react_` folder
-9. Copy `react/.env.example` into `.env` and adjust the `VITE_API_BASE_URL` parameter
+8. Open a new terminal and navigate to the `react/` folder
+9. Copy `.env.example` into `.env` and adjust the `VITE_API_BASE_URL` parameter
 10. Run `npm install`
-11. Run `npm run dev` to start vite server for React
-
-## Demo Images
-<div style="display: flex;">
-    <h4>Light Mode</h4>
-    <img src="./images/home.png" >
-    <img src="./images/browse.png" >
-    <img src="./images/anime_detail.png" >
-    <img src="./images/dashboard.png">
-    <h4>Dark Mode</h4>
-    <img src="./images/home_dark.png" >
-    <img src="./images/browse_dark.png" >
-    <img src="./images/anime_detail_dark.png" >
-     <img src="./images/dashboard_dark.png">
-    <h4>Mobile</h4>
-    <img src="./images/dashboard_mobile.png">
-    <img src="./images/anime_detail_mobile.png">
-</div>
+11. Run `npm run dev` to start a vite server for React
+12. Access the application via [http://localhost:3000/](http://localhost:3000/)
 
 
