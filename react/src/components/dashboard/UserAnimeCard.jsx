@@ -86,7 +86,7 @@ function UserAnimeCard({ anime, queryKey }) {
 
 UserAnimeCard.propTypes = {
     anime: PropTypes.object.isRequired,
-    queryKey: PropTypes.array.isRequired,
+    queryKey: PropTypes.string.isRequired,
 };
 
 export default UserAnimeCard;

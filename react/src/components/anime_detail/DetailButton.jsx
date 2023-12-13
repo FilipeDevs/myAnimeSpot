@@ -34,7 +34,7 @@ function DetailButton({ anime }) {
 
         storeAnime.mutate(payload, {
             onSuccess: () => toast.success("New anime added !"),
-            onError: () => toast.error("Error adding anime"),
+            onError: () => toast.error("Error adding anime !"),
         });
     };
 

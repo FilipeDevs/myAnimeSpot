@@ -18,23 +18,27 @@ function AllUserAnime() {
 
     if (isError) return <ErrorComponent />;
 
+    // Group anime by list
+    const groupedAnimes = data.reduce((result, anime) => {
+        const list = anime.list;
+        if (!result[list]) {
+            result[list] = [];
+        }
+        result[list].push(anime);
+        return result;
+    }, {});
+
     return (
         <div className="">
-            {Array.isArray(data) && data.length == 0 ? (
-                <NothingFound />
-            ) : (
-                Object.keys(data).map((list, index) => {
-                    const animes = data[list];
-                    return (
-                        <UserAnimeGrid
-                            key={index}
-                            title={list}
-                            animes={animes}
-                            queryKey={queryKey}
-                        />
-                    );
-                })
-            )}
+            {Object.entries(groupedAnimes).map(([list, animes], index) => (
+                <UserAnimeGrid
+                    key={index}
+                    title={list}
+                    animes={animes}
+                    queryKey={queryKey}
+                />
+            ))}
+            {Object.keys(groupedAnimes).length === 0 && <NothingFound />}
         </div>
     );
 }

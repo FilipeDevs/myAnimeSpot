@@ -31,7 +31,6 @@ function Login() {
             .then((response) => {
                 setUser(response.data.user.name);
                 setToken(response.data.token);
-                toast.success(response.data.message);
             })
             .catch((err) => {
                 const response = err.response;

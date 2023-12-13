@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 function UserAnimeForm({ anime, onClose, queryKey }) {
     const [inputProgress, setInputProgress] = useState(anime.progress);
-    const { updateAnime } = useUpdateAnime(queryKey, true);
+    const { updateAnime } = useUpdateAnime(queryKey);
     const { destroyAnime } = useDestroyAnime(queryKey);
 
     const handleInputChange = (e) => {
@@ -30,29 +30,25 @@ function UserAnimeForm({ anime, onClose, queryKey }) {
             list: selectedList,
         };
         updateAnime.mutate(payload, {
-            onSuccess: () => toast.success("Anime updated successfully"),
-            onError: () =>
-                toast.error(
-                    "Something went wrong when updating the anime entry"
-                ),
-            onSettled: () => {
+            onSuccess: () => {
+                toast.success("Anime updated successfully !");
                 onClose();
             },
+            onError: () =>
+                toast.error("Something went wrong when updating the anime !"),
         });
     };
 
     const handleDelete = () => {
         destroyAnime.mutate(anime.anime_id, {
             onSuccess: () => {
-                toast.success("Anime deleted successfully");
+                toast.success("Anime deleted successfully !");
+                onClose();
             },
             onError: () => {
-                toast.error(
-                    "Something went wrong when deleting the anime entry"
-                );
+                toast.error("Something went wrong when deleting the anime !");
             },
         });
-        onClose();
     };
 
     return (

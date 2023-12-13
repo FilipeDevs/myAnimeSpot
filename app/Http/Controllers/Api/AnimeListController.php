@@ -14,16 +14,9 @@ class AnimeListController extends Controller
     public function index(Request $request)
     {
         $user_id = $request->user()->id;
-        $animeList = UserAnime::all()->where('user_id', $user_id)->groupBy('list');
+        $animeList = UserAnime::where('user_id', $user_id)->get();
 
-        // custom order (watching list will be first, followed by planned list, ...)
-        $sortedAnimeList = $animeList->sortBy(function ($groupedItems, $list) {
-            $customOrder = ['watching', 'planned', 'dropped', 'completed'];
-            $position = array_search($list, $customOrder);
-            return $position;
-        });
-
-        return response()->json($sortedAnimeList);
+        return response()->json($animeList->all());
     }
 
     public function indexAnime(Request $request, $id)
