@@ -28,16 +28,21 @@ function AllUserAnime() {
         return result;
     }, {});
 
+    // List order
+    const listOrder = ["watching", "planned", "completed", "dropped"];
+
     return (
         <div className="">
-            {Object.entries(groupedAnimes).map(([list, animes], index) => (
-                <UserAnimeGrid
-                    key={index}
-                    title={list}
-                    animes={animes}
-                    queryKey={queryKey}
-                />
-            ))}
+            {listOrder.map((list, index) =>
+                groupedAnimes[list] && groupedAnimes[list].length > 0 ? (
+                    <UserAnimeGrid
+                        key={index}
+                        title={list}
+                        animes={groupedAnimes[list]}
+                        queryKey={queryKey}
+                    />
+                ) : null
+            )}
             {Object.keys(groupedAnimes).length === 0 && <NothingFound />}
         </div>
     );
