@@ -31,6 +31,17 @@ MyAnimeSpot is a minimalist web application inspired by anime platforms like [My
 
 ## Screenshots
 
+![Home View](https://i.imgur.com/WLiNPrP.png)
+
+![Browse View](https://i.imgur.com/vkUoZOv.png)
+
+![Detail View](https://i.imgur.com/PSex4eR.png)
+
+![Dashboard View](https://i.imgur.com/qNFprIP.png)
+
+![Mobile View 1](https://i.imgur.com/5SdzI7q.png)
+
+![Mobile View 2](https://i.imgur.com/fsSH9So.png)
 
 ## Usage (Local)
 
