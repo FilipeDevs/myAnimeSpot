@@ -1,0 +1,38 @@
+version: "3"
+services:
+  react_client:
+    build: ./react
+    ports:
+      - 80:80
+    networks:
+      - laravel_api_mysql-net
+    depends_on:
+      - api_service
+
+  api_service:
+    build: .
+    ports:
+      - 8080:8080
+    networks:
+      - laravel_api_mysql-net
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    volumes:
+      - .m2:/root/.m2
+
+  mysqldb:
+    image: "mysql:8.0"
+    ports:
+      - 3306:3306
+    networks:
+      - laravel_api_mysql-net
+    environment:
+      MYSQL_DATABASE: anime_list
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 5
+networks:
+ laravel_api_mysql-net:
